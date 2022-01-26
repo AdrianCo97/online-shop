@@ -1,4 +1,5 @@
 import "./navbar.css";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 function Navbar() {
   return (
@@ -11,6 +12,7 @@ function Navbar() {
 
       <div class="account-category">
         <li>Login</li>
+        <ShoppingCartOutlinedIcon fontSize="medium"/>
       </div>
     </div>
   )

@@ -29,6 +29,16 @@
   cursor: pointer;
 }
 
+.background > .account-category{
+  width: 90px;
+  display: flex;
+  font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  list-style-type: none;
+  text-align: center;
+  align-items: center;
+}
+
 .background > .account-category > li {
   width: 90px;
   font-family: 'Dongle', sans-serif;
