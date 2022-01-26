@@ -1,20 +1,18 @@
-import { AppBar, Box, Toolbar, Button } from "@mui/material";
 import "./navbar.css";
 
 function Navbar() {
   return (
-    <Box>
-      <AppBar position="static" color="secondary">
-        <Toolbar sx={{ justifyContent: 'space-between'}}>
-          <Box sx={{ justifyContent: 'space-evenly' }}>
-            <Button size="large" color="inherit">Male</Button>
-            <Button size="large" color="inherit">Female</Button>
-            <Button size="large" color="inherit">Children</Button> 
-          </Box>
-          <Button size="large" color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <div class="background">
+      <div class="clothing-category">
+        <button>Male</button>
+        <button>Female</button>
+        <button>Herr</button>
+      </div>
+
+      <div class="account-category">
+        <button>Login</button>
+      </div>
+    </div>
   )
 }
 
