@@ -4,13 +4,13 @@ function Navbar() {
   return (
     <div class="background">
       <div class="clothing-category">
-        <button>Male</button>
-        <button>Female</button>
-        <button>Herr</button>
+        <li>Male</li>
+        <li>Female</li>
+        <li>Child</li>
       </div>
 
       <div class="account-category">
-        <button>Login</button>
+        <li>Login</li>
       </div>
     </div>
   )

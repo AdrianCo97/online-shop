@@ -1,9 +1,10 @@
 .background{
-  background-color: #192a56;
+  background-color: #ffffff;
   display:flex;
   justify-content: space-between;
-  height: 30px;
+  height: 45px;
   padding: 5px;
+  border-bottom: 2px solid black;
 }
 
 .background > .clothing-category {
@@ -12,16 +13,31 @@
   align-items: center;
 }
 
-.background > .clothing-category > button {
-  height: 90%;
-  width: 100px;
-  margin: 5px;
-  background-color: #273c75;
-  border: solid rgb(0, 0, 0) 1px;
-  color: rgb(77, 228, 248);
+.background > .clothing-category > li {
+  width: 90px;
+  background-color: #ffffff;
+  border: none;
+  color: rgb(0, 0, 0);
   font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  list-style-type: none;
+  text-align: center;
 }
 
-.background > .clothing-category > button:hover {
-  background-color: #3753a0;
+.background > .clothing-category > li:hover {
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+.background > .account-category > li {
+  width: 90px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  list-style-type: none;
+  text-align: center;
+}
+
+.background > .account-category > li:hover {
+  border-bottom: 1px solid black;
+  cursor: pointer;
 }
