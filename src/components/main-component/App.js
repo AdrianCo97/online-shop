@@ -1,9 +1,13 @@
 import Navbar from "../components/Navbar/Navbar.js";
 import "./app.css";
+
 function App() {
   return (
     <body>
-      <Navbar/>
+      <Navbar />
+      <div class="main-content">
+        <h3>What's popular</h3>
+      </div>
     </body>
     
   );

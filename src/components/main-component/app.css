@@ -1,0 +1,10 @@
+body{
+  background-color: #ffffff;
+}
+
+.main-content{
+  display: flex;
+  justify-content: center;
+  font-family: 'Dongle', sans-serif;
+  font-size: x-large
+}
