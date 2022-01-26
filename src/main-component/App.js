@@ -2,7 +2,10 @@ import Navbar from "../components/Navbar/Navbar.js";
 import "./app.css";
 function App() {
   return (
-    <Navbar/>
+    <body>
+      <Navbar/>
+    </body>
+    
   );
 }
 
