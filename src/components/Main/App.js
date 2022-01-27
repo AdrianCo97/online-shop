@@ -10,29 +10,30 @@ function App() {
     fetch("https://fakestoreapi.com/products")
       .then(response => response.json())
       .then(data => setProducts(data));
-    console.log(products);
   }, [])
 
   return (
-    <body>
+    <div>
       <Navbar />
-      <div class="main-content">
+      <div className="main-content">
         <h3>What's popular</h3>
-        <div class="products">
+        <div className="products">
         {
           products.map(product => {
             return (
-              <div class="product" key={product.id}>
-                  <img src={product.image}></img>
-                  <p class="title">{product.title}</p>
-                  <p>{product.price} SEK</p>
+              <div className="product" key={product.id}>
+                <img src={product.image}></img>
+                <div className="product-info">
+                  <p className="title">{product.title}</p>
+                  <p className="price">{product.price} SEK</p>
+                </div>
               </div>     
             )
           })
         }
         </div>
       </div>
-    </body>
+    </div>
     
   );
 }
