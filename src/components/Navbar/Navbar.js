@@ -3,14 +3,14 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 function Navbar() {
   return (
-    <div class="background">
-      <div class="clothing-category">
+    <div className="background">
+      <div className="clothing-category">
         <li>Male</li>
         <li>Female</li>
         <li>Child</li>
       </div>
 
-      <div class="account-category">
+      <div className="account-category">
         <li>Login</li>
         <ShoppingCartOutlinedIcon fontSize="medium"/>
       </div>
