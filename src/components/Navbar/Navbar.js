@@ -5,9 +5,9 @@ function Navbar() {
   return (
     <div className="background">
       <div className="clothing-category">
-        <li>Male</li>
-        <li>Female</li>
-        <li>Child</li>
+        <li>Electronics</li>
+        <li>Clothes</li>
+        <li>Accessories</li>
       </div>
 
       <div className="account-category">
