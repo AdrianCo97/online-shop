@@ -25,7 +25,7 @@ function App() {
     <div>
       <Navbar />
       <div className="main-content">
-        <h3>What's popular</h3>
+        <h3>All products</h3>
         <div className="products">
         {
           products.map(product => {
