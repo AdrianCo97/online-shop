@@ -1,23 +1,24 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import Clothes from "../Categories/Clothes/Clothes.js";
-import Electronics from "../Categories/Electronics/Electronics.js";
+
 function Navbar() {
   return (
     <div className="background">
-      <div className="clothing-category">
-        <Link to="/electronics">
-          <li>Electronics</li>
+      <div className="products-category">
+        <Link className="link" to="/electronics">
+          Electronics
         </Link>
-        <Link to="/clothes">
-          <li>Clothes</li>
+        <Link className="link" to="/clothes">
+          Clothes
         </Link>
-        <li>Accessories</li>
+        <Link className="link" to="/accessories">
+          Accessories
+        </Link>
       </div>
 
       <div className="account-category">
-        <li>Login</li>
+        Login
         <ShoppingCartOutlinedIcon fontSize="medium" />
       </div>
     </div>
