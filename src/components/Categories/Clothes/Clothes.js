@@ -28,8 +28,6 @@ function Clothes() {
       setWomensClothes(womensClothes);
       setClothes(mensClothes);
       setClothes((clothes) => [...clothes, ...womensClothes]);
-
-      console.log(clothes);
     };
     getAllClothes();
   }, []);
@@ -41,9 +39,11 @@ function Clothes() {
 
   const renderClothes = (genderSelection) => {
     if (genderSelection === "male") {
-      return <RenderSpecificClothes clothes={mensClothes} />;
+      return <RenderSpecificClothes clothes={mensClothes} />
+    } else if(genderSelection === "female") {
+      return <RenderSpecificClothes clothes={womensClothes} />
     } else {
-      return <RenderSpecificClothes clothes={womensClothes} />;
+      return <RenderSpecificClothes clothes={clothes} />
     }
   };
 
