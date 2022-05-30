@@ -54,7 +54,7 @@ function Clothes() {
         <InputLabel>Gender</InputLabel>
         <Select value={genderSelection} onChange={handleChange}>
           <MenuItem value="male">Male</MenuItem>
-          <MenuItem value="famale">Female</MenuItem>
+          <MenuItem value="female">Female</MenuItem>
         </Select>
       </FormControl>
 
