@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Navbar/Navbar.js";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import RenderSpecificClothes from "./RenderSpecificClothes.js";
 
 function Clothes() {
   const [clothes, setClothes] = useState([]);
+  const [womensClothes, setWomensClothes] = useState([]);
+  const [mensClothes, setMensClothes] = useState([]);
+  const [genderSelection, setGenderSelection] = useState("");
 
   useEffect(() => {
-    const getClothes = async () => {
+    const getAllClothes = async () => {
       const menClothingResponse = await fetch(
         "https://fakestoreapi.com/products/category/men's clothing"
       );
@@ -14,32 +22,45 @@ function Clothes() {
       );
 
       const mensClothes = await menClothingResponse.json();
-      const womensClothing = await womenClothingResponse.json();
+      const womensClothes = await womenClothingResponse.json();
 
+      setMensClothes(mensClothes);
+      setWomensClothes(womensClothes);
       setClothes(mensClothes);
-      setClothes((clothes) => [...clothes, ...womensClothing]);
+      setClothes((clothes) => [...clothes, ...womensClothes]);
+
+      console.log(clothes);
     };
-    getClothes();
+    getAllClothes();
   }, []);
+
+  const handleChange = (event) => {
+    const result = event.target.value;
+    setGenderSelection(result);
+  };
+
+  const renderClothes = (genderSelection) => {
+    if (genderSelection === "male") {
+      return <RenderSpecificClothes clothes={mensClothes} />;
+    } else {
+      return <RenderSpecificClothes clothes={womensClothes} />;
+    }
+  };
 
   return (
     <div>
       <Navbar />
+      <FormControl fullWidth>
+        <InputLabel>Gender</InputLabel>
+        <Select value={genderSelection} onChange={handleChange}>
+          <MenuItem value="male">Male</MenuItem>
+          <MenuItem value="famale">Female</MenuItem>
+        </Select>
+      </FormControl>
 
       <div className="main-content">
-        <h3>All products</h3>
         <div className="products">
-          {clothes.map((clothes) => {
-            return (
-              <div className="product" key={clothes.id}>
-                <img src={clothes.image}></img>
-                <div className="product-info">
-                  <p className="title">{clothes.title}</p>
-                  <p className="price">{clothes.price} SEK</p>
-                </div>
-              </div>
-            );
-          })}
+          {renderClothes(genderSelection)}
         </div>
       </div>
     </div>
