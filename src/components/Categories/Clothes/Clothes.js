@@ -4,7 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
-import RenderSpecificClothes from "./RenderSpecificClothes.js";
+import RenderArrayContent from "../Logic/RenderArrayContent.js";
 
 function Clothes() {
   const [clothes, setClothes] = useState([]);
@@ -39,11 +39,11 @@ function Clothes() {
 
   const renderClothes = (genderSelection) => {
     if (genderSelection === "male") {
-      return <RenderSpecificClothes clothes={mensClothes} />
+      return <RenderArrayContent array={mensClothes} />
     } else if(genderSelection === "female") {
-      return <RenderSpecificClothes clothes={womensClothes} />
+      return <RenderArrayContent array={womensClothes} />
     } else {
-      return <RenderSpecificClothes clothes={clothes} />
+      return <RenderArrayContent array={clothes} />
     }
   };
 
