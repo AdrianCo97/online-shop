@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import Navbar from "../../Navbar/Navbar.js"
 import RenderArrayContent from "../Logic/RenderArrayContent.js";
-import "./Home.css";
+import "../../../Styling/Styling.css"
 
 function Home(){
     const [products, setProducts] = useState([]);
