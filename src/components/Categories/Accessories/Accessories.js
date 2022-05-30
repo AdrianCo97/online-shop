@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../Navbar/Navbar.js";
+import RenderArrayContent from "../Logic/RenderArrayContent.js";
 
 function Accessories() {
   const [jewelery, setJewelery] = useState([]);
@@ -18,6 +19,13 @@ function Accessories() {
   return (
     <div>
       <Navbar />
+
+      <div className="main-content">
+        <div className="products">
+          <RenderArrayContent array={jewelery}/>
+        </div>
+      </div>
+
     </div>
   );
 }
