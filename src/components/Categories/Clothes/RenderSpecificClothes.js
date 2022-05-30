@@ -1,6 +1,4 @@
 function RenderSpecificClothes({ clothes }) {
-    
-    console.log(clothes);
   return (
     <div className="products">
       {clothes.map((clothes) => {
