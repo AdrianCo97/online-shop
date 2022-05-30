@@ -55,6 +55,7 @@ function Clothes() {
         <Select value={genderSelection} onChange={handleChange}>
           <MenuItem value="male">Male</MenuItem>
           <MenuItem value="female">Female</MenuItem>
+          <MenuItem value="all">All Clothes</MenuItem>
         </Select>
       </FormControl>
 
