@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import Navbar from "../../Navbar/Navbar.js"
+import RenderArrayContent from "../Logic/RenderArrayContent.js";
 import "./Home.css";
 
 function Home(){
@@ -10,8 +11,8 @@ function Home(){
         try {
           const response = await fetch("https://fakestoreapi.com/products");
           const data = await response.json();
-          console.log(data);
           setProducts(data);
+          console.log(data);
         }
         catch (error) {
           console.log(error);
@@ -26,19 +27,7 @@ function Home(){
         <div className="main-content">
           <h3>All products</h3>
           <div className="products">
-          {
-            products.map(product => {
-              return (
-                <div className="product" key={product.id}>
-                  <img src={product.image}></img>
-                  <div className="product-info">
-                    <p className="title">{product.title}</p>
-                    <p className="price">{product.price} SEK</p>
-                  </div>
-                </div>     
-              )
-            })
-          }
+            <RenderArrayContent array={products} />
           </div>
         </div>
       </div>
