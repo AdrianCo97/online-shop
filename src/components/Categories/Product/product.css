@@ -1,0 +1,36 @@
+.pageContent {
+  margin-top: 50px;
+  display: block;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: solid 1px black;
+}
+
+.header > img {
+  width: 300px;
+}
+
+.header > .price {
+  margin: 0px;
+}
+
+.header > button {
+  font-family: "Dongle", sans-serif;
+  font-size: x-large;
+  background-color: rgb(44, 182, 44);
+  border: none;
+  border-radius: 7px;
+  width: 150px;
+  height: 50px;
+}
+
+.header > button:hover {
+  transform: scale(1.01);
+  transition: 0.3s;
+  cursor: pointer;
+}
