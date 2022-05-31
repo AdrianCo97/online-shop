@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../Navbar/Navbar.js";
 import RenderArrayContent from "../Logic/RenderArrayContent.js";
+const jsonData = require("../../../data/products.json");
 
 function Accessories() {
   const [jewelery, setJewelery] = useState([]);
 
   useEffect(() => {
-    async function getAccessories() {
-      const response = await fetch(
-        "https://fakestoreapi.com/products/category/jewelery"
-      );
-      const jewelery = await response.json();
-      setJewelery(jewelery);
+    const jeweleryArray = [];
+    for(let i = 0; i < jsonData.length; i++) {
+      if(jsonData[i].category === "jewelery") {
+        jeweleryArray.push(jsonData[i]);
+      }
     }
-    getAccessories();
+    setJewelery(jeweleryArray);
   }, []);
 
   return (
