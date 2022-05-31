@@ -10,11 +10,8 @@ function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const getProducts = async () => {
-     setProducts(jsonData);
-     setIsLoading(false);
-    };
-    getProducts();
+    setProducts(jsonData);
+    setIsLoading(false);
   }, []);
 
   return (
@@ -23,7 +20,11 @@ function Home() {
       <div className="main-content">
         <h3>All products</h3>
         <div className="products">
-          {isLoading ? <CircularProgress /> : <RenderArrayContent array={products} />}
+          {isLoading ? (
+            <CircularProgress />
+          ) : (
+            <RenderArrayContent array={products} />
+          )}
         </div>
       </div>
     </div>
