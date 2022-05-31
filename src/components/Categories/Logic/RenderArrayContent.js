@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function RenderSpecificClothes({ array }) {
 
   const navigate = useNavigate();
-  const handleClick = (id) => {
+  const navigateToProduct = (id) => {
     navigate(`/product/${id}`);
   }
 
@@ -12,7 +12,7 @@ function RenderSpecificClothes({ array }) {
     <div className="products">
       {array.map((array) => {
         return (
-          <div className="product" key={array.id} onClick={() => handleClick(array.id)}>
+          <div className="product" key={array.id} onClick={() => navigateToProduct(array.id)}>
             <img src={array.image}></img>
             <div className="product-info">
               <p className="title">{array.title}</p>
