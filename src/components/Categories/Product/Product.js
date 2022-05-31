@@ -19,7 +19,10 @@ function Product() {
     <div>
       <Navbar />
       <div className="pageContent">
+        <img src={product.image}></img>
         <p>{product.title}</p>
+        <p>{product.description}</p>
+        <p>{product.price} €</p> 
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ function RenderSpecificClothes({ array }) {
             <img src={array.image}></img>
             <div className="product-info">
               <p className="title">{array.title}</p>
-              <p className="price">{array.price} SEK</p>
+              <p className="price">{array.price} €</p>
             </div>
           </div>
         );
