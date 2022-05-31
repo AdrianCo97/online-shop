@@ -12,14 +12,19 @@
 }
 
 .header > img {
-  width: 300px;
+  width: 150px;
 }
 
-.header > .price {
+.header > .footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header > .footer > .price {
   margin: 0px;
 }
 
-.header > button {
+.header > .footer > button {
   font-family: "Dongle", sans-serif;
   font-size: x-large;
   background-color: rgb(44, 182, 44);
@@ -29,7 +34,7 @@
   height: 50px;
 }
 
-.header > button:hover {
+.header > .footer > button:hover {
   transform: scale(1.01);
   transition: 0.3s;
   cursor: pointer;
