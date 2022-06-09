@@ -1,6 +1,6 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function Navbar() {
   return (
@@ -19,7 +19,7 @@ function Navbar() {
 
       <div className="account-category">
         Login
-        <ShoppingCartOutlinedIcon fontSize="medium" />
+        <ShoppingCartIcon fontSize="medium" />
       </div>
     </div>
   );
