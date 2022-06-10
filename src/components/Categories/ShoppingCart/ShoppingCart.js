@@ -1,24 +1,37 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "../ShoppingCart/ShoppingCart.css";
 import { CartContext } from "../../../contexts/CartContext.js";
 import Navbar from "../../Navbar/Navbar.js";
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    let totalPrice = 0;
+
+    for (let i = 0; i < productsInCart.length; i++) {
+      totalPrice += productsInCart[i].price;
+    }
+
+    setTotalPrice(totalPrice);
+  }, [totalPrice]);
 
   return (
     <div>
       <Navbar />
-      {productsInCart.map((product) => {
+      <div className="header">
+        <p>Total Price: {totalPrice} €</p>
+        <button>Go to checkout</button>
+      </div>
+      {productsInCart.map((product, index) => {
         return (
-          <div className="productinCart" key={product.id}>
+          <div className="productinCart" key={index}>
             <p>{product.title}</p>
             <p>{product.price} €</p>
           </div>
         );
       })}
-
-      <button>Go to checkout</button>
     </div>
   );
 }
