@@ -14,6 +14,8 @@ function ShoppingCart() {
       totalPrice += productsInCart[i].price;
     }
 
+    totalPrice = Math.round(totalPrice);
+
     setTotalPrice(totalPrice);
   }, [totalPrice]);
 
@@ -24,14 +26,17 @@ function ShoppingCart() {
         <p>Total Price: {totalPrice} €</p>
         <button>Go to checkout</button>
       </div>
-      {productsInCart.map((product, index) => {
-        return (
-          <div className="productinCart" key={index}>
-            <p>{product.title}</p>
-            <p>{product.price} €</p>
-          </div>
-        );
-      })}
+      <div className="productsinCart">
+        {productsInCart.map((product, index) => {
+          return (
+            <div className="productinCart" key={index}>
+              <img src={product.image}></img>
+              <p>{product.title}</p>
+              <p>{product.price} €</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
