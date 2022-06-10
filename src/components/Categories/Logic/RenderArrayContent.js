@@ -1,4 +1,3 @@
-import Product from "../Product/Product.js";
 import { useNavigate } from "react-router-dom";
 
 function RenderSpecificClothes({ array }) {
