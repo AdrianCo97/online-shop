@@ -52,3 +52,8 @@
   border-bottom: 1px solid black;
   cursor: pointer;
 }
+
+.cartSection:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
