@@ -31,7 +31,7 @@ function Navbar() {
         Login
         <div className="cartSection">
           <Badge badgeContent={productsInCart.length} color="success">
-            <ShoppingCartIcon fontSize="medium" onClick={() => navigateToShoppingCart()} />
+            <ShoppingCartIcon className="shoppingCart" fontSize="medium" onClick={() => navigateToShoppingCart()} />
           </Badge>
         </div>
       </div>
