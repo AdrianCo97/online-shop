@@ -1,12 +1,17 @@
 import "./navbar.css";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { CartContext } from "../../contexts/CartContext.js";
 import Badge from "@mui/material/Badge";
 
 function Navbar() {
   const { productsInCart } = useContext(CartContext);
+
+  const navigate = useNavigate();
+  const navigateToShoppingCart = () => {
+    navigate("/shoppingcart");
+  }
 
   return (
     <div className="background">
@@ -26,7 +31,7 @@ function Navbar() {
         Login
         <div className="cartSection">
           <Badge badgeContent={productsInCart.length} color="success">
-            <ShoppingCartIcon fontSize="medium" />
+            <ShoppingCartIcon fontSize="medium" onClick={() => navigateToShoppingCart()} />
           </Badge>
         </div>
       </div>
