@@ -1,0 +1,6 @@
+.productinCart{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
