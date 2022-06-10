@@ -8,7 +8,7 @@ import {CartContext} from "./contexts/CartContext.js"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function WebsiteRoutes() {
-  const [productsInCart, setProductsInCart] = useState(0);
+  const [productsInCart, setProductsInCart] = useState([]);
   return (
     <CartContext.Provider value={{ productsInCart, setProductsInCart }}>
       <BrowserRouter>
