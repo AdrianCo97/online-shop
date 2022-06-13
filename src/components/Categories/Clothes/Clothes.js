@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from "../../Navbar/Navbar.js";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import CircularProgress from "@mui/material/CircularProgress";
 import RenderArrayContent from "../Logic/RenderArrayContent.js";
+import "./Clothes.css";
 const jsonData = require("../../../data/products.json");
 
 function Clothes() {
@@ -52,14 +53,20 @@ function Clothes() {
   return (
     <div>
       <Navbar />
-      <FormControl fullWidth>
-        <InputLabel>Gender</InputLabel>
-        <Select value={genderSelection} onChange={handleChange}>
-          <MenuItem value="male">Male</MenuItem>
-          <MenuItem value="female">Female</MenuItem>
-          <MenuItem value="all">All Clothes</MenuItem>
-        </Select>
-      </FormControl>
+      <div className="clothes-header">
+        <FormControl sx={{width: "200px", margin: "20px"}}>
+          <InputLabel>Gender</InputLabel>
+          <Select
+            value={genderSelection}
+            label="Gender"
+            onChange={handleChange}
+          >
+            <MenuItem value="male">Male</MenuItem>
+            <MenuItem value="female">Female</MenuItem>
+            <MenuItem value="all">All Clothes</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
 
       <div className="main-content">
         {isLoading ? (
