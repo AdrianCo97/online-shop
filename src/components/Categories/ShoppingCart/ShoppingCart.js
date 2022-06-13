@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import "../ShoppingCart/ShoppingCart.css";
 import { CartContext } from "../../../contexts/CartContext.js";
 import Navbar from "../../Navbar/Navbar.js";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
@@ -33,6 +34,7 @@ function ShoppingCart() {
               <img src={product.image}></img>
               <p>{product.title}</p>
               <p>{product.price} €</p>
+              <DeleteIcon className="trashCan" />
             </div>
           );
         })}
