@@ -2,15 +2,19 @@ import { useState, useContext, useEffect } from "react";
 import "../ShoppingCart/ShoppingCart.css";
 import { CartContext } from "../../../contexts/CartContext.js";
 import Navbar from "../../Navbar/Navbar.js";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(() => {
-    let totalPrice = 0;
+  const removeProduct = (product) => {
+    const newCart = productsInCart.filter(item => item !== product)
+    setProductsInCart(newCart);
+  };
 
+  const determinePrice = () => {
+    let totalPrice = 0;
     for (let i = 0; i < productsInCart.length; i++) {
       totalPrice += productsInCart[i].price;
     }
@@ -18,7 +22,7 @@ function ShoppingCart() {
     totalPrice = Math.round(totalPrice);
 
     setTotalPrice(totalPrice);
-  }, [totalPrice]);
+  };
 
   return (
     <div>
@@ -34,7 +38,10 @@ function ShoppingCart() {
               <img src={product.image}></img>
               <p className="product-title">{product.title}</p>
               <p className="product-price">{product.price} €</p>
-              <DeleteIcon className="trashCan" />
+              <p>{index}</p>
+              <div className="trashcan" onClick={() => removeProduct(product, index)}>
+                <DeleteIcon className="trashcan" />
+              </div>
             </div>
           );
         })}
