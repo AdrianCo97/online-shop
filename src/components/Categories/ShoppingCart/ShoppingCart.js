@@ -32,8 +32,8 @@ function ShoppingCart() {
           return (
             <div className="productinCart" key={index}>
               <img src={product.image}></img>
-              <p>{product.title}</p>
-              <p>{product.price} €</p>
+              <p className="product-title">{product.title}</p>
+              <p className="product-price">{product.price} €</p>
               <DeleteIcon className="trashCan" />
             </div>
           );
