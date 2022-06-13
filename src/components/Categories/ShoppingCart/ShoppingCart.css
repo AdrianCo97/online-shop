@@ -1,5 +1,7 @@
 .header {
   display: flex;
+  padding: 20px;
+  border: none;
 }
 
 .header > button {
@@ -18,9 +20,33 @@
   cursor: pointer;
 }
 
+.productsinCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .productinCart {
   border: 1px solid black;
   border-radius: 10px;
+  height: 40px;
+  width: 80%;
   display: flex;
+  align-items: center;
+  padding: 10px;                          
+  margin: 10px;
   justify-content: space-between;
+}
+
+.product-title{
+  width: 80%;
+  text-overflow: ellipsis;
+}
+.productinCart > img {
+  width: 30px;
+  height: 100%;
+}
+
+.trashcan:hover{
+  cursor: pointer;
 }
