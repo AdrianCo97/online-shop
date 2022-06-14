@@ -6,11 +6,27 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
+
+  const [productsToRender, setProductsToRender] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    let array = [...new Set(productsInCart)];
+
+    setProductsToRender(array);                    
+  }, [])
+
+  const getAmountOfProducts = (value) => {
+    let count = 0;
+    productsInCart.forEach(v => v === value && count++);
+    return count;
+  }
 
   const removeProduct = (product) => {
     const newCart = productsInCart.filter(item => item !== product)
+    let array = [...new Set(newCart)];
     setProductsInCart(newCart);
+    setProductsToRender(array);
   };
 
   const determinePrice = () => {
@@ -32,13 +48,12 @@ function ShoppingCart() {
         <button>Go to checkout</button>
       </div>
       <div className="productsinCart">
-        {productsInCart.map((product, index) => {
+        {productsToRender.map((product, index) => {
           return (
             <div className="productinCart" key={index}>
               <img src={product.image}></img>
               <p className="product-title">{product.title}</p>
               <p className="product-price">{product.price} €</p>
-              <p>{index}</p>
               <div className="trashcan" onClick={() => removeProduct(product, index)}>
                 <DeleteIcon className="trashcan" />
               </div>
