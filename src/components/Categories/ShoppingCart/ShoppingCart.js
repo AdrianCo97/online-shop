@@ -3,6 +3,7 @@ import "../ShoppingCart/ShoppingCart.css";
 import { CartContext } from "../../../contexts/CartContext.js";
 import Navbar from "../../Navbar/Navbar.js";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ClickAwayListener } from "@mui/material";
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
@@ -11,10 +12,19 @@ function ShoppingCart() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    let array = [...new Set(productsInCart)];
-
-    setProductsToRender(array);                    
+    gatherAndGetAmountOfProducts();
   }, [])
+
+  const gatherAndGetAmountOfProducts = () => {
+    let gatheredProducts = [...new Set(productsInCart)];
+    
+    let finalProductsArray = [];
+    for(let i = 0; i < gatheredProducts.length; i++){
+      const itemCount = getAmountOfProducts(gatheredProducts[i]);
+      finalProductsArray.push({product:gatheredProducts[i], count:itemCount});
+    }           
+    setProductsToRender(finalProductsArray);
+  }
 
   const getAmountOfProducts = (value) => {
     let count = 0;
@@ -22,11 +32,8 @@ function ShoppingCart() {
     return count;
   }
 
-  const removeProduct = (product) => {
-    const newCart = productsInCart.filter(item => item !== product)
-    let array = [...new Set(newCart)];
-    setProductsInCart(newCart);
-    setProductsToRender(array);
+  const removeProduct = (indexToDelete) => {
+    setProductsToRender(products => products.filter((_,index) => index !== indexToDelete));
   };
 
   const determinePrice = () => {
@@ -51,10 +58,11 @@ function ShoppingCart() {
         {productsToRender.map((product, index) => {
           return (
             <div className="productinCart" key={index}>
-              <img src={product.image}></img>
-              <p className="product-title">{product.title}</p>
-              <p className="product-price">{product.price} €</p>
-              <div className="trashcan" onClick={() => removeProduct(product, index)}>
+              <img src={product.product.image}></img>
+              <p className="product-title">{product.product.title}</p>
+              <p>Amount: {product.count}</p>
+              <p className="product-price">{product.product.price} €</p>
+              <div className="trashcan" onClick={() => removeProduct(index)}>
                 <DeleteIcon className="trashcan" />
               </div>
             </div>
