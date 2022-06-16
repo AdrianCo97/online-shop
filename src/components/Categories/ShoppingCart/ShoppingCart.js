@@ -66,8 +66,8 @@ function ShoppingCart() {
             <p>Title</p>
           </div>
           <div className="info-box-right">
-            <p>Amount</p>
-            <p>Price</p>
+            <p className="product-count">Amount</p>
+            <p className="product-price">Price</p>
           </div>
         </div>
       </div>
@@ -76,16 +76,20 @@ function ShoppingCart() {
           return (
             <div className="productinCart" key={index}>
               <div className="product-body-left">
-                <p>{product.product.title}</p>
+                <p className="product-title">{product.product.title}</p>
               </div>
               <div className="product-body-right">
-                <p>{product.count}</p>
-                <p className="product-price">{product.product.price} €</p>
+                <div className="product-cart-info">
+                  <p className="product-count">{product.count}</p>
+                  <p className="product-price">{product.product.price} €</p>
+                </div>
 
-                <DeleteIcon
-                  className="trashcan"
-                  onClick={() => removeProduct(product, index)}
-                />
+                <div className="trashcan-icon">
+                  <DeleteIcon
+                    className="trashcan"
+                    onClick={() => removeProduct(product, index)}
+                  />
+                </div>
               </div>
             </div>
           );
