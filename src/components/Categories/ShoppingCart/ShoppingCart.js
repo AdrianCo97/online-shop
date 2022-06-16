@@ -63,7 +63,7 @@ function ShoppingCart() {
         <button>Go to checkout</button>
         <div className="info-box">
           <div className="info-box-left">
-            <p>Title</p>
+            <p className="product-title">Title</p>
           </div>
           <div className="info-box-right">
             <p className="product-count">Amount</p>
