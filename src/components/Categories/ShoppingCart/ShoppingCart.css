@@ -27,10 +27,22 @@
   border-bottom: 1px solid rgb(226, 226, 226);
 }
 
+
 .info-box > .info-box-right{
   display: flex;
   width: 220px;
   align-items: flex-start;
+}
+
+.info-box-left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+}
+
+.info-box-left > .product-title{
+  text-align: center;
 }
 
 .info-box-right > .product-count{
@@ -64,6 +76,7 @@
 
 .product-title{
   margin: 0px;
+  width: 160px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
