@@ -55,6 +55,11 @@ function ShoppingCart() {
       <div className="header">
         <p>Total Price: {totalPrice} €</p>
         <button>Go to checkout</button>
+        <div className="info-box">
+          <p>Title</p>
+          <p>Amount</p>
+          <p>Price</p>
+        </div>
       </div>
       <div className="productsinCart">
         {productsToRender.map((product, index) => {
@@ -62,7 +67,7 @@ function ShoppingCart() {
             <div className="productinCart" key={index}>
               <img src={product.product.image}></img>
               <p className="product-title">{product.product.title}</p>
-              <p>Amount: {product.count}</p>
+              <p>{product.count}</p>
               <p className="product-price">{product.product.price} €</p>
               <div className="trashcan" onClick={() => removeProduct(product, index)}>
                 <DeleteIcon className="trashcan" />
