@@ -13,6 +13,7 @@ function ShoppingCart() {
 
   useEffect(() => {
     gatherAndGetAmountOfProducts();
+
   }, [])
 
   const gatherAndGetAmountOfProducts = () => {
@@ -32,8 +33,9 @@ function ShoppingCart() {
     return count;
   }
 
-  const removeProduct = (indexToDelete) => {
+  const removeProduct = (product, indexToDelete) => {
     setProductsToRender(products => products.filter((_,index) => index !== indexToDelete));
+    setProductsInCart(productsInCart.filter(p => p.id !== product.product.id))
   };
 
   const determinePrice = () => {
@@ -62,7 +64,7 @@ function ShoppingCart() {
               <p className="product-title">{product.product.title}</p>
               <p>Amount: {product.count}</p>
               <p className="product-price">{product.product.price} €</p>
-              <div className="trashcan" onClick={() => removeProduct(index)}>
+              <div className="trashcan" onClick={() => removeProduct(product, index)}>
                 <DeleteIcon className="trashcan" />
               </div>
             </div>
