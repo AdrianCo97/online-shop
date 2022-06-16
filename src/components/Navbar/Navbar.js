@@ -28,7 +28,6 @@ function Navbar() {
       </div>
 
       <div className="account-category">
-        Login
         <div className="cartSection">
           <Badge badgeContent={productsInCart.length} color="success">
             <ShoppingCartIcon className="shoppingCart" fontSize="medium" onClick={() => navigateToShoppingCart()} />
