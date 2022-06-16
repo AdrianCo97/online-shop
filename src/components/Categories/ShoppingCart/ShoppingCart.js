@@ -75,9 +75,7 @@ function ShoppingCart() {
         {productsToRender.map((product, index) => {
           return (
             <div className="productinCart" key={index}>
-              <div className="product-body-left">
                 <p className="product-title">{product.product.title}</p>
-              </div>
               <div className="product-body-right">
                 <div className="product-cart-info">
                   <p className="product-count">{product.count}</p>
