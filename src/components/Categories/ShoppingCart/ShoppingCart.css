@@ -63,7 +63,6 @@
 }
 
 .product-title{
-  height: 100%;
   margin: 0px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -92,4 +91,8 @@
   width: 220px;
   align-items: center;
   justify-content: space-between;
+}
+
+.trashcan{
+  cursor: pointer;
 }

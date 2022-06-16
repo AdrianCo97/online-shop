@@ -81,13 +81,10 @@ function ShoppingCart() {
                   <p className="product-count">{product.count}</p>
                   <p className="product-price">{product.product.price} €</p>
                 </div>
-
-                <div className="trashcan-icon">
                   <DeleteIcon
                     className="trashcan"
                     onClick={() => removeProduct(product, index)}
                   />
-                </div>
               </div>
             </div>
           );
