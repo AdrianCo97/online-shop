@@ -13,29 +13,35 @@ function ShoppingCart() {
 
   useEffect(() => {
     gatherAndGetAmountOfProducts();
-
-  }, [])
+  }, []);
 
   const gatherAndGetAmountOfProducts = () => {
     let gatheredProducts = [...new Set(productsInCart)];
-    
+
     let finalProductsArray = [];
-    for(let i = 0; i < gatheredProducts.length; i++){
+    for (let i = 0; i < gatheredProducts.length; i++) {
       const itemCount = getAmountOfProducts(gatheredProducts[i]);
-      finalProductsArray.push({product:gatheredProducts[i], count:itemCount});
-    }           
+      finalProductsArray.push({
+        product: gatheredProducts[i],
+        count: itemCount,
+      });
+    }
     setProductsToRender(finalProductsArray);
-  }
+  };
 
   const getAmountOfProducts = (value) => {
     let count = 0;
-    productsInCart.forEach(v => v === value && count++);
+    productsInCart.forEach((v) => v === value && count++);
     return count;
-  }
+  };
 
   const removeProduct = (product, indexToDelete) => {
-    setProductsToRender(products => products.filter((_,index) => index !== indexToDelete));
-    setProductsInCart(productsInCart.filter(p => p.id !== product.product.id))
+    setProductsToRender((products) =>
+      products.filter((_, index) => index !== indexToDelete)
+    );
+    setProductsInCart(
+      productsInCart.filter((p) => p.id !== product.product.id)
+    );
   };
 
   const determinePrice = () => {
@@ -56,21 +62,30 @@ function ShoppingCart() {
         <p>Total Price: {totalPrice} €</p>
         <button>Go to checkout</button>
         <div className="info-box">
-          <p>Title</p>
-          <p>Amount</p>
-          <p>Price</p>
+          <div className="info-box-left">
+            <p>Title</p>
+          </div>
+          <div className="info-box-right">
+            <p>Amount</p>
+            <p>Price</p>
+          </div>
         </div>
       </div>
       <div className="productsinCart">
         {productsToRender.map((product, index) => {
           return (
             <div className="productinCart" key={index}>
-              <img src={product.product.image}></img>
-              <p className="product-title">{product.product.title}</p>
-              <p>{product.count}</p>
-              <p className="product-price">{product.product.price} €</p>
-              <div className="trashcan" onClick={() => removeProduct(product, index)}>
-                <DeleteIcon className="trashcan" />
+              <div className="product-body-left">
+                <p>{product.product.title}</p>
+              </div>
+              <div className="product-body-right">
+                <p>{product.count}</p>
+                <p className="product-price">{product.product.price} €</p>
+
+                <DeleteIcon
+                  className="trashcan"
+                  onClick={() => removeProduct(product, index)}
+                />
               </div>
             </div>
           );
