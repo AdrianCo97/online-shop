@@ -64,7 +64,7 @@ function ShoppingCart() {
       <Navbar />
       <div className="header">
         <p>Total Price: {totalPrice} €</p>
-        {productsInCart.length > 0 ? <button>Go to checkout</button> : <button disabled>Go to checkout</button>}
+        {productsInCart.length > 0 ? <button className="enabledButton">Go to checkout</button> : <button className="disabledButton" disabled>Go to checkout</button>}
         <div className="info-box">
           <div className="info-box-left">
             <p className="product-title">Title</p>
