@@ -3,7 +3,7 @@ import "../ShoppingCart/ShoppingCart.css";
 import { CartContext } from "../../../contexts/CartContext.js";
 import Navbar from "../../Navbar/Navbar.js";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ClickAwayListener } from "@mui/material";
+
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
@@ -64,7 +64,7 @@ function ShoppingCart() {
       <Navbar />
       <div className="header">
         <p>Total Price: {totalPrice} €</p>
-        <button>Go to checkout</button>
+        {productsInCart.length > 0 ? <button>Go to checkout</button> : <button disabled>Go to checkout</button>}
         <div className="info-box">
           <div className="info-box-left">
             <p className="product-title">Title</p>
