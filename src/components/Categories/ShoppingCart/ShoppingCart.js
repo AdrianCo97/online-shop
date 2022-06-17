@@ -48,11 +48,6 @@ function ShoppingCart() {
 
     setProductsInCart(array);
     determinePrice(array);
-
-    /*(products) =>
-      products.filter((_, index) => index !== indexToDelete)
-    console.log(productsToRender)
-    */
   };
 
   const determinePrice = (array) => {
@@ -60,7 +55,8 @@ function ShoppingCart() {
     for (let i = 0; i < array.length; i++) {
       totalPrice += array[i].price;
     }
-    setTotalPrice(totalPrice);
+    let roundedPrice = Math.round(totalPrice);
+    setTotalPrice(roundedPrice);
   };
 
   return (
