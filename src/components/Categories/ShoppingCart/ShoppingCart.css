@@ -4,7 +4,7 @@
   border: none;
 }
 
-.header > button {
+.header > .enabledButton {
   font-family: "Dongle", sans-serif;
   font-size: x-large;
   background-color: rgb(44, 182, 44);
@@ -14,10 +14,20 @@
   height: 50px;
 }
 
-.header > button:hover {
+.header > .enabledButton:hover {
   transform: scale(1.01);
   transition: 0.3s;
   cursor: pointer;
+}
+
+.header > .disabledButton {
+  font-family: "Dongle", sans-serif;
+  font-size: x-large;
+  background-color: rgb(44, 182, 44);
+  border: none;
+  border-radius: 7px;
+  width: 150px;
+  height: 50px;
 }
 
 .info-box{
