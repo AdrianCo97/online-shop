@@ -13,6 +13,7 @@ function ShoppingCart() {
 
   useEffect(() => {
     gatherAndGetAmountOfProducts();
+    determinePrice(productsInCart);
   }, []);
 
   const gatherAndGetAmountOfProducts = () => {
@@ -36,22 +37,29 @@ function ShoppingCart() {
   };
 
   const removeProduct = (product, indexToDelete) => {
-    setProductsToRender((products) =>
+    setProductsToRender([
+      ...productsToRender.slice(0, indexToDelete),
+      ...productsToRender.slice(indexToDelete + 1, productsToRender.length)
+    ]);
+
+    let array = productsInCart.filter((p) => {
+      return p.id != product.product.id;
+    });
+
+    setProductsInCart(array);
+    determinePrice(array);
+
+    /*(products) =>
       products.filter((_, index) => index !== indexToDelete)
-    );
-    setProductsInCart(
-      productsInCart.filter((p) => p.id !== product.product.id)
-    );
+    console.log(productsToRender)
+    */
   };
 
-  const determinePrice = () => {
+  const determinePrice = (array) => {
     let totalPrice = 0;
-    for (let i = 0; i < productsInCart.length; i++) {
-      totalPrice += productsInCart[i].price;
+    for (let i = 0; i < array.length; i++) {
+      totalPrice += array[i].price;
     }
-
-    totalPrice = Math.round(totalPrice);
-
     setTotalPrice(totalPrice);
   };
 
@@ -75,16 +83,16 @@ function ShoppingCart() {
         {productsToRender.map((product, index) => {
           return (
             <div className="productinCart" key={index}>
-                <p className="product-title">{product.product.title}</p>
+              <p className="product-title">{product.product.title}</p>
               <div className="product-body-right">
                 <div className="product-cart-info">
                   <p className="product-count">{product.count}</p>
                   <p className="product-price">{product.product.price} €</p>
                 </div>
-                  <DeleteIcon
-                    className="trashcan"
-                    onClick={() => removeProduct(product, index)}
-                  />
+                <DeleteIcon
+                  className="trashcan"
+                  onClick={() => removeProduct(product, index)}
+                />
               </div>
             </div>
           );
