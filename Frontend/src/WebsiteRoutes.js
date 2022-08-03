@@ -6,10 +6,11 @@ import Accessories from "./components/Categories/Accessories/Accessories.js";
 import Product from "./components/Categories/Product/Product.js";
 import ShoppingCart from "./components/Categories/ShoppingCart/ShoppingCart.js";
 import Checkout from "./components/Categories/Checkout/Checkout.js";
+import Login from "./components/Categories/Account/Login/Login.js";
 import { CartContext } from "./contexts/CartContext.js";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Account from "./components/Categories/Account/Account.js";
+
+
 function WebsiteRoutes() {
   const [productsInCart, setProductsInCart] = useState([]);
   return (
@@ -23,7 +24,7 @@ function WebsiteRoutes() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/account" element={<Account />} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
       </BrowserRouter>
     </CartContext.Provider>
