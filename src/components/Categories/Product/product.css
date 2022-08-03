@@ -16,12 +16,12 @@
 }
 
 .header > .footer{
-    display: flex;
     justify-content: space-between;
 }
 
 .header > .footer > .price {
   margin: 0px;
+  text-align: center;
 }
 
 .header > .footer > button {
@@ -38,4 +38,10 @@
   transform: scale(1.01);
   transition: 0.3s;
   cursor: pointer;
+}
+
+.productInfo {
+  margin: 0 auto;
+
+  width: 70%;
 }
