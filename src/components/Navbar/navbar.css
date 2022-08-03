@@ -13,32 +13,31 @@
   align-items: center;
 }
 
-.background > .products-category > .link{
+.link{
   width: 110px;
-  background-color: #ffffff;
   border: none;
   color: rgb(0, 0, 0);
   font-family: 'Dongle', sans-serif;
   font-size: 30px;
-  list-style-type: none;
   text-align: center;
   text-decoration: none;
 }
   
-.background > .products-category > .link:hover{ 
-  border-bottom: 1px solid black;
+.link:hover{ 
   cursor: pointer;
+  text-decoration: underline 1px;
 }
 
 .background > .account-category{
-  width: 90px;
   display: flex;
   font-family: 'Dongle', sans-serif;
+  justify-content: space-between;
   font-size: 30px;
   list-style-type: none;
   text-align: center;
   align-items: center;
 }
+      
 
 .background > .account-category > li {
   width: 90px;
@@ -51,6 +50,12 @@
 .background > .account-category > li:hover {
   border-bottom: 1px solid black;
   cursor: pointer;
+}
+
+.account-category > .account-section {
+  display: flex;
+  height: 45px;
+  align-items: center;
 }
 
 .cartSection:hover{

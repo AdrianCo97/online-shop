@@ -2,6 +2,7 @@ import "./navbar.css";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from "@mui/icons-material/Person";
 import { CartContext } from "../../contexts/CartContext.js";
 import Badge from "@mui/material/Badge";
 
@@ -11,7 +12,7 @@ function Navbar() {
   const navigate = useNavigate();
   const navigateToShoppingCart = () => {
     navigate("/shoppingcart");
-  }
+  };
 
   return (
     <div className="background">
@@ -28,9 +29,19 @@ function Navbar() {
       </div>
 
       <div className="account-category">
+        <div className="account-section">
+          <Link className="link" to="/account">
+            <PersonIcon sx={{ verticalAlign: "middle" }} />
+            Login
+          </Link>
+        </div>
         <div className="cartSection">
           <Badge badgeContent={productsInCart.length} color="success">
-            <ShoppingCartIcon className="shoppingCart" fontSize="medium" onClick={() => navigateToShoppingCart()} />
+            <ShoppingCartIcon
+              className="shoppingCart"
+              fontSize="medium"
+              onClick={() => navigateToShoppingCart()}
+            />
           </Badge>
         </div>
       </div>
