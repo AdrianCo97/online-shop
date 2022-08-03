@@ -30,7 +30,7 @@ function Navbar() {
 
       <div className="account-category">
         <div className="account-section">
-          <Link className="link" to="/account">
+          <Link className="link" to="/login">
             <PersonIcon sx={{ verticalAlign: "middle" }} />
             Login
           </Link>
