@@ -1,6 +1,8 @@
+import "./createAccount.css";
+
 function CreateAccount() {
     return (
-        <div>
+        <div className="create-account-box">
             <p>Create Account</p> 
         </div>
     )
