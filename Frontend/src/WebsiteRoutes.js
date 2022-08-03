@@ -7,6 +7,7 @@ import Product from "./components/Categories/Product/Product.js";
 import ShoppingCart from "./components/Categories/ShoppingCart/ShoppingCart.js";
 import Checkout from "./components/Categories/Checkout/Checkout.js";
 import Login from "./components/Categories/Account/Login/Login.js";
+import CreateAccount from "./components/Categories/Account/CreateAccount/CreateAccount.js"
 import { CartContext } from "./contexts/CartContext.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -25,6 +26,7 @@ function WebsiteRoutes() {
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/createAccount" element={<CreateAccount />} />
         </Routes>
       </BrowserRouter>
     </CartContext.Provider>
