@@ -9,6 +9,7 @@ import Checkout from "./components/Categories/Checkout/Checkout.js";
 import { CartContext } from "./contexts/CartContext.js";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Account from "./components/Categories/Account/Account.js";
 function WebsiteRoutes() {
   const [productsInCart, setProductsInCart] = useState([]);
   return (
@@ -22,6 +23,7 @@ function WebsiteRoutes() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </BrowserRouter>
     </CartContext.Provider>
