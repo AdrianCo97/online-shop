@@ -1,7 +1,14 @@
 import { TextField } from "@mui/material";
+import {useState} from "React";
 import "./login.css";
 
 function Login() {
+
+    const[input, setInput] = useState({
+        password: "",
+        showPasswords: false
+    })
+
   return (
     <div className="login-box">
       <p>Login</p>
