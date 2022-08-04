@@ -4,7 +4,7 @@ import "./login.css";
 
 function Login() {
   const [passwordState, setPasswordState] = useState({
-    passWord: "",
+    password: "",
     showPassword: false
   });
 
