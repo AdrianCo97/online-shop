@@ -4,11 +4,10 @@ import "./login.css";
 
 function Login() {
 
-    const[input, setInput] = useState({
+    const[passwordState, setPasswordState] = useState({
         password: "",
         showPasswords: false
     })
-
   return (
     <div className="login-box">
       <p>Login</p>
