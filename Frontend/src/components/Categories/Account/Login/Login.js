@@ -9,16 +9,16 @@ function Login() {
   });
 
   const handleChange = (event) => {
-    setPasswordState(event.target.value);
+    setPasswordState({...passwordState, password: event.target.value});
   };
 
   const showPassword = () => {
-    setPasswordState(passwordState)
+    setPasswordState({...passwordState, showPassword: true});
   }
 
   return (
     <form className="login-box">
-      <p>Login</p>
+      <p>{passwordState.password}</p>
       <div className="body">
         <TextField
           id="email"
@@ -31,7 +31,7 @@ function Login() {
           id="password"
           label="Password"
           variant="outlined"
-          type="password"
+          type={passwordState.showPassword ? "text" : "password"}
           autoComplete="off"
           onChange={(event) => handleChange(event)}
           sx={{ mb: 2 }}
