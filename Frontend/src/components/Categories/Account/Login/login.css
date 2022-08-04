@@ -1,0 +1,42 @@
+.login-box {
+  border: solid rgb(160, 160, 160) 1px;
+  border-radius: 7px;
+  display: flex;
+  width: 400px;
+  margin: 0px auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-box > .body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  padding: 20px;
+  margin: 0px auto;
+}
+
+.login-box > .body > .buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px auto;
+}
+
+.login-box > .body > .buttons > .submit-button {
+  font-family: "Dongle", sans-serif;
+  font-size: x-large;
+  background-color: rgb(255, 255, 255);
+  border: 1px rgb(172, 172, 172) solid;
+  border-radius: 7px;
+  width: 150px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+
+.login-box > .body > .buttons > .submit-button:hover {
+  transform: scale(1.01);
+  transition: 0.3s;
+  cursor: pointer;
+}
