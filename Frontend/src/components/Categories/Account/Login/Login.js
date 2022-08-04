@@ -1,13 +1,20 @@
-import { TextField } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import { useState } from "react";
 import "./login.css";
 
 function Login() {
-  const [passwordState, setPasswordState] = useState();
+  const [passwordState, setPasswordState] = useState({
+    passWord: "",
+    showPassword: false
+  });
 
   const handleChange = (event) => {
     setPasswordState(event.target.value);
   };
+
+  const showPassword = () => {
+    setPasswordState(passwordState)
+  }
 
   return (
     <form className="login-box">
