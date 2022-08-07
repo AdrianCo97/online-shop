@@ -25,7 +25,7 @@ function Login() {
   return (
     <form className="login-box">
       <div className="header">
-      <p>login</p>
+      <h2>Login</h2>
       </div>
       <div className="body">
         <TextField
