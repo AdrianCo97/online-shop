@@ -3,6 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./createAccount.css";
 
 function CreateAccount() {
+
+  const navigate = useNavigate();
+  const navigateToLoginPage = () => {
+    navigate("/login");
+  };
+  
   return (
     <form className="create-account-box">
       <div className="header">
@@ -12,10 +18,17 @@ function CreateAccount() {
         <TextField label="firstname" sx={{ mb: 2 }} />
         <TextField label="lastname" sx={{ mb: 2 }} />
         <TextField label="email" sx={{ mb: 2 }} />
-        <TextField label="password" type="password" sx={{ mb: 2 }} />
+        <TextField
+          label="password"
+          type="password"
+          sx={{ mb: 2 }}
+          autoComplete="off"
+        />
         <div className="buttons">
           <button>Create account</button>
-          <button>Already have an account?</button>
+          <button onClick={navigateToLoginPage}>
+            Already have an account?
+          </button>
         </div>
       </div>
     </form>
