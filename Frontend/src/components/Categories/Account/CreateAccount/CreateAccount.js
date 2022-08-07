@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -40,6 +40,15 @@ function CreateAccount() {
           type={passwordState.showPassword ? "text" : "password"}
           sx={{ mb: 2 }}
           autoComplete="off"
+          InputProps={{
+            endAdornment: (
+                <InputAdornment position="end">
+                    <IconButton onClick={changePasswordVisability}>
+                        {passwordState.showPassword ? <VisibilityIcon/> : <VisibilityOffIcon />}
+                    </IconButton>
+                </InputAdornment>
+            )
+          }}
         />
         <div className="buttons">
           <button>Create account</button>
