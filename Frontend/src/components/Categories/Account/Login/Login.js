@@ -24,7 +24,9 @@ function Login() {
 
   return (
     <form className="login-box">
-      <p>{passwordState.password}</p>
+      <div className="header">
+      <p>login</p>
+      </div>
       <div className="body">
         <TextField
           id="email"
