@@ -1,10 +1,16 @@
 import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./login.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Login() {
+
+  const navigate = useNavigate();
+  const navigateToAccountPage = () => {
+    navigate("/createaccount")
+  }
   const [passwordState, setPasswordState] = useState({
     password: "",
     showPassword: false,
@@ -55,7 +61,7 @@ function Login() {
         />
         <div className="buttons">
           <button className="submit-button">Login</button>
-          <button className="submit-button">Not registered?</button>
+          <button onClick={navigateToAccountPage} className="submit-button">Not registered?</button>
         </div>
       </div>
     </form>
