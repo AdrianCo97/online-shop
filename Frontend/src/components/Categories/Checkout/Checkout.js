@@ -1,8 +1,6 @@
 import Navbar from "../../Navbar/Navbar";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import FormHelperText from "@mui/material/FormHelperText";
 
 function Checkout() {
   return (
