@@ -26,7 +26,7 @@ function WebsiteRoutes() {
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/createAccount" element={<CreateAccount />} />
+          <Route path="/createaccount" element={<CreateAccount />} />
         </Routes>
       </BrowserRouter>
     </CartContext.Provider>
