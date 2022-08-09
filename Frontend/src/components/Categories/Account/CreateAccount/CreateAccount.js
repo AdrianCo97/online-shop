@@ -6,6 +6,9 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import "./createAccount.css";
 
 function CreateAccount() {
+
+  const url = "http://localhost:8080"
+
   const [userInput, setUserInput] = useState({
     firstname: "",
     lastname: "",
@@ -17,6 +20,14 @@ function CreateAccount() {
     password: "",
     showPassword: false,
   });
+
+  const createAccount = async (e) => {
+    await fetch(`${url}/users`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(userInput)
+    })
+  }
 
   const navigate = useNavigate();
   const navigateToLoginPage = () => {
@@ -32,7 +43,11 @@ function CreateAccount() {
   };
 
   return (
-    <form className="create-account-box">
+    <form className="create-account-box" onSubmit={createAccount}>
+      <p>{userInput.firstname}</p>
+      <p>{userInput.lastname}</p>
+      <p>{userInput.email}</p>
+      <p>{userInput.password}</p>
       <div className="header">
         <h2>Create Account</h2>
       </div>
@@ -81,7 +96,7 @@ function CreateAccount() {
           }}
         />
         <div className="buttons">
-          <button>Create account</button>
+          <button type="submit">Create account</button>
           <button onClick={navigateToLoginPage}>
             Already have an account?
           </button>
