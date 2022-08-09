@@ -77,6 +77,7 @@ function CreateAccount() {
             setUserInput({ ...userInput, password: e.target.value })
           }
           autoComplete="off"
+          inputProps={{minLength: 5, maxLength: 30}}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
