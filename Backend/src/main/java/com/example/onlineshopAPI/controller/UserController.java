@@ -4,10 +4,7 @@ import com.example.onlineshopAPI.doa.UserRepository;
 import com.example.onlineshopAPI.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
@@ -27,6 +24,13 @@ public class UserController {
             userRepository.save(user);
             return new ResponseEntity<>("Account created", HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/users/:id")
+    public User getUser(@PathVariable Long Id) {
+        User user = userRepository.findById(Id).
+                orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return user;
     }
 
 }
