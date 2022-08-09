@@ -21,7 +21,7 @@ function CreateAccount() {
     showPassword: false,
   });
 
-  const createAccount = async (e) => {
+  const createAccount = async () => {
     await fetch(`${url}/users`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -44,10 +44,6 @@ function CreateAccount() {
 
   return (
     <form className="create-account-box" onSubmit={createAccount}>
-      <p>{userInput.firstname}</p>
-      <p>{userInput.lastname}</p>
-      <p>{userInput.email}</p>
-      <p>{userInput.password}</p>
       <div className="header">
         <h2>Create Account</h2>
       </div>
