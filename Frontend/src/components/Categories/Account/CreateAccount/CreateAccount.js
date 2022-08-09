@@ -6,6 +6,12 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import "./createAccount.css";
 
 function CreateAccount() {
+  const [userInput, setUserInput] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
 
   const [passwordState, setPasswordState] = useState({
     password: "",
@@ -18,13 +24,12 @@ function CreateAccount() {
   };
 
   const changePasswordVisability = () => {
-    if(!passwordState.showPassword){
-        setPasswordState({...passwordState, showPassword: true});
+    if (!passwordState.showPassword) {
+      setPasswordState({ ...passwordState, showPassword: true });
+    } else {
+      setPasswordState({ ...passwordState, showPassword: false });
     }
-    else{
-        setPasswordState({...passwordState, showPassword: false})
-    }
-  }
+  };
 
   return (
     <form className="create-account-box">
@@ -32,22 +37,47 @@ function CreateAccount() {
         <h2>Create Account</h2>
       </div>
       <div className="body">
-        <TextField label="firstname" sx={{ mb: 2 }} />
-        <TextField label="lastname" sx={{ mb: 2 }} />
-        <TextField label="email" sx={{ mb: 2 }} />
+        <TextField
+          label="firstname"
+          sx={{ mb: 2 }}
+          onChange={(e) =>
+            setUserInput({ ...userInput, firstname: e.target.value })
+          }
+        />
+        <TextField
+          label="lastname"
+          sx={{ mb: 2 }}
+          onChange={(e) =>
+            setUserInput({ ...userInput, lastname: e.target.value })
+          }
+        />
+        <TextField
+          label="email"
+          sx={{ mb: 2 }}
+          onChange={(e) =>
+            setUserInput({ ...userInput, email: e.target.value })
+          }
+        />
         <TextField
           label="password"
           type={passwordState.showPassword ? "text" : "password"}
           sx={{ mb: 2 }}
+          onChange={(e) =>
+            setUserInput({ ...userInput, password: e.target.value })
+          }
           autoComplete="off"
           InputProps={{
             endAdornment: (
-                <InputAdornment position="end">
-                    <IconButton onClick={changePasswordVisability}>
-                        {passwordState.showPassword ? <VisibilityIcon/> : <VisibilityOffIcon />}
-                    </IconButton>
-                </InputAdornment>
-            )
+              <InputAdornment position="end">
+                <IconButton onClick={changePasswordVisability}>
+                  {passwordState.showPassword ? (
+                    <VisibilityIcon />
+                  ) : (
+                    <VisibilityOffIcon />
+                  )}
+                </IconButton>
+              </InputAdornment>
+            ),
           }}
         />
         <div className="buttons">
