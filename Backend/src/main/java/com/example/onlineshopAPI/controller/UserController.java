@@ -61,4 +61,16 @@ public class UserController {
         return new ResponseEntity<>("User deleted", HttpStatus.OK);
     }
 
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> changeUser(@PathVariable Long id, @RequestBody User user){
+        User userToChange = userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "This user does not exist"));
+        userToChange.setFirstname(user.getFirstname());
+        userToChange.setLastname(user.getLastname());
+        userToChange.setEmail(user.getEmail());
+        userToChange.setPassword(user.getPassword());
+        return ResponseEntity.ok(userToChange);
+    }
+
+
 }
