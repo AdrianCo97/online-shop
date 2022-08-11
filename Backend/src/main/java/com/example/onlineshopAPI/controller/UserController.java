@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 public class UserController {
@@ -39,6 +41,16 @@ public class UserController {
         User user = userRepository.findById(id).
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         return user;
+    }
+
+    @GetMapping("/users")
+    public Iterable<User> getUsers(){
+        if(((List<User>)userRepository.findAll()).size() == 0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This database contains no users");
+        }
+        else{
+            return userRepository.findAll();
+        }
     }
 
 }
