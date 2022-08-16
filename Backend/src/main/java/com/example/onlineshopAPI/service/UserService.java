@@ -1,7 +1,6 @@
 package com.example.onlineshopAPI.service;
 import com.example.onlineshopAPI.doa.UserRepository;
 import com.example.onlineshopAPI.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,11 +12,14 @@ import java.util.List;
 @Service
 public class UserService implements UserServiceInterface{
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
 
     @Override
@@ -63,7 +65,7 @@ public class UserService implements UserServiceInterface{
         userToChange.setFirstname(user.getFirstname());
         userToChange.setLastname(user.getLastname());
         userToChange.setEmail(user.getEmail());
-        userToChange.setPassword(user.getPassword());
+        userToChange.setPassword(passwordEncoder.encode(user.getPassword()));
         return ResponseEntity.ok(userToChange);
     }
 }
