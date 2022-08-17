@@ -3,7 +3,6 @@ import com.example.onlineshopAPI.doa.UserRepository;
 import com.example.onlineshopAPI.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -14,11 +13,9 @@ public class UserService implements UserServiceInterface{
 
     private UserRepository userRepository;
 
-    private PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -28,7 +25,7 @@ public class UserService implements UserServiceInterface{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User can't be null");
         }
         else{
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setPassword(user.getPassword());
             userRepository.save(user);
             return new ResponseEntity<>("Account created", HttpStatus.OK);
         }
@@ -65,7 +62,7 @@ public class UserService implements UserServiceInterface{
         userToChange.setFirstname(user.getFirstname());
         userToChange.setLastname(user.getLastname());
         userToChange.setEmail(user.getEmail());
-        userToChange.setPassword(passwordEncoder.encode(user.getPassword()));
+        userToChange.setPassword(user.getPassword());
         return ResponseEntity.ok(userToChange);
     }
 }
