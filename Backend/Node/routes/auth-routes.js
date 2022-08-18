@@ -4,10 +4,10 @@ import User from "../models/User.js";
 const router = express.Router();
 
 router.post("/register", async(req, res) => {
-    const firstname = req.params.firstname;
-    const lastname = req.params.lastname;
-    const email = req.params.email;
-    const password = req.params.password;  
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const password = req.body.password;  
 
     try{
         const newUser = new User({
