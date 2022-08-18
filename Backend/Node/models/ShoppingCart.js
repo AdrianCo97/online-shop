@@ -1,16 +1,19 @@
 import mongoose from "mongoose";
+import Product from "../models/Product.js";
 
 const shoppingCartSchema = mongoose.Schema(
   {
     email: String,
     cartTitle: String,
-    products: [
-      {
-        productId: Number,
+    products: [{
+        id: Number,
         title: String,
-        price: String,
-      },
-    ],
+        price: Number,
+        description: String,
+        category: String,
+        image: String,
+        rating: {rate: Number, count: Number}
+    }],
   },
   {
     versionKey: false,
