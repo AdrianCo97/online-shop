@@ -10,7 +10,7 @@ dotenv.config();
 
 const uri = process.env.MONGODB_URI;
 mongoose.connect(uri).then(console.log("Connected"));
-
-app.use("/api/auth/", authRoutes);
+app.use(express.json());
+app.use("/api/auth", authRoutes);
 
 app.listen(port, () => console.log("listening on port " + port));
