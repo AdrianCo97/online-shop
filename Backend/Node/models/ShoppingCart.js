@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const shoppingCartSchema = mongoose.Schema(
   {
-    createdBy: String,
+    email: String,
     cartTitle: String,
     products: [
       {
