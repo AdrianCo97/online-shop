@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 import express from "express";
+import authRoutes from "./routes/auth-routes.js";
+
+const app = express();
+const port = 5000;
 
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
@@ -14,7 +18,7 @@ mongoose.connect(
     }
   }
 );
-const app = express();
-const port = 5000;
+
+app.user("/api/auth/", authRoutes);
 
 app.listen(port, () => console.log("listening on port " + port));
