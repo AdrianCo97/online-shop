@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
+  productId: {
+    type: Number,
+    required: true
+  },
   title: {
     type: String,
     required: true,
@@ -26,4 +30,4 @@ const productSchema = new mongoose.Schema({
    timeStamps: true
 });
 
-export default mongoose.model("Cart", productSchema);
+export default mongoose.model("Product", productSchema);
