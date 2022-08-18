@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 
-const ShoppingCartSchema = mongoose.Schema(
+const shoppingCartSchema = mongoose.Schema(
   {
     createdBy: String,
+    cartTitle: String,
     products: [
       {
         productId: Number,
@@ -17,4 +18,4 @@ const ShoppingCartSchema = mongoose.Schema(
   }
 );
 
-export default new mongoose.model("ShoppingCart", ShoppingCartSchema);
+export default mongoose.model("ShoppingCart", shoppingCartSchema);
