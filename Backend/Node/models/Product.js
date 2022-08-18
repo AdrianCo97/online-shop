@@ -22,7 +22,8 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
 }, {
-   versionKey: false
+   versionKey: false,
+   timeStamps: true
 });
 
 export default mongoose.model("Cart", productSchema);
