@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import { encryption } from "../encryption.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { authenticateToken } from "../middleware/authenticateToken.js";
 
 const router = express.Router();
 
@@ -46,7 +47,8 @@ router.post("/login", async (req, res) => {
         const validPassword = await bcrypt.compare(password, foundUser.password);
         if(validPassword){
           const accessToken = jwt.sign(foundUser.toJSON(), process.env.ACCESS_TOKEN);
-          res.status(200).json({accessToken: accessToken});
+          res.status(200).json({user: {firstname: foundUser.firstname, lastname: foundUser.lastname, email: foundUser.email}, accessToken: accessToken});
+          set
         }
         else{
             res.status(400).json({error: "Invalid password."});
