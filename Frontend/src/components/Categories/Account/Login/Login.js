@@ -34,9 +34,12 @@ function Login() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({email: userInput.email, password: userInput.password}),
-    }).then((response) => {
-      console.log(response.json());
-    });
+    }).then((response) => response.json())
+    .then((data) => setUser({
+      firstname: data.user.firstname,
+      accessToken: data.accessToken,
+      isLoggedIn: true
+    }));
   };
 
   return (
