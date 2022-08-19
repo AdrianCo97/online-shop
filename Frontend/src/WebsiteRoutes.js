@@ -14,7 +14,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function WebsiteRoutes() {
   const [productsInCart, setProductsInCart] = useState([]);
-  const [user, setUser] = useState({ firstname: "", accesstoken: "", isLoggedIn: false });
+  const [user, setUser] = useState({
+    user: { firstname: "", lastname: "", email: "", accesstoken: "" },
+    isLoggedIn: false,
+  });
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <CartContext.Provider value={{ productsInCart, setProductsInCart }}>
