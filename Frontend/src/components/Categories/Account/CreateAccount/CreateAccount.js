@@ -7,7 +7,7 @@ import "./createAccount.css";
 
 function CreateAccount() {
 
-  const url = "http://localhost:8080"
+  const url = "http://localhost:5000"
 
   const [userInput, setUserInput] = useState({
     firstname: "",
@@ -22,11 +22,12 @@ function CreateAccount() {
   });
 
   const createAccount = async () => {
-    await fetch(`${url}/users`, {
+    await fetch(`${url}/api/auth/register`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(userInput)
     })
+    .then(response => console.log(response));
   }
 
   const navigate = useNavigate();
