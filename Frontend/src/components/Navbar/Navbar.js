@@ -32,10 +32,14 @@ function Navbar() {
 
       <div className="account-category">
         <div className="account-section">
-          <Link className="link" to="/login">
-            <PersonIcon sx={{ verticalAlign: "middle" }} />
-            Login
-          </Link>
+          {user.isLoggedIn ? (
+            <Link className="link" to="/profile">Welcome {user.firstname}</Link>
+          ) : (
+            <Link className="link" to="/login">
+              <PersonIcon sx={{ verticalAlign: "middle" }} />
+              Login
+            </Link>
+          )}
         </div>
         <div className="cartSection">
           <Badge badgeContent={productsInCart.length} color="success">
