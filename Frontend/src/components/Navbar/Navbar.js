@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import { CartContext } from "../../contexts/CartContext.js";
+import { UserContext } from "../../contexts/UserContext.js";
 import Badge from "@mui/material/Badge";
 
 function Navbar() {
   const { productsInCart } = useContext(CartContext);
+  const { user } = useContext(UserContext);
 
   const navigate = useNavigate();
   const navigateToShoppingCart = () => {
