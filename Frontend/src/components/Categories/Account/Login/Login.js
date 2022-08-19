@@ -8,17 +8,17 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Login() {
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
+  const {user, setUser } = useContext(UserContext);
 
   const navigateToAccountPage = () => {
     navigate("/createaccount");
   };
 
-  const [userInput, setUserInput] = useState({ 
+  const [userInput, setUserInput] = useState({
     email: "",
     password: "",
-    showPassword: false
-  })
+    showPassword: false,
+  });
 
   const showOrHidePassword = () => {
     if (userInput.showPassword) {
@@ -33,13 +33,26 @@ function Login() {
     await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({email: userInput.email, password: userInput.password}),
-    }).then((response) => response.json())
-    .then((data) => setUser({
-      firstname: data.user.firstname,
-      accessToken: data.accessToken,
-      isLoggedIn: true
-    }));
+      body: JSON.stringify({
+        email: userInput.email,
+        password: userInput.password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        setUser({
+          user: {
+            firstname: data.user.firstname,
+            lastname: data.user.lastname,
+            email: data.user.email,
+          },
+          accessToken: data.accessToken,
+          isLoggedIn: true,
+        })
+      );
+      if(user.isLoggedIn){
+        navigate("/");
+      }
   };
 
   return (
@@ -54,7 +67,9 @@ function Login() {
           variant="outlined"
           type="email"
           sx={{ mb: 2 }}
-          onChange={(event) => setUserInput({...userInput, email: event.target.value})}
+          onChange={(event) =>
+            setUserInput({ ...userInput, email: event.target.value })
+          }
         />
         <TextField
           id="password"
@@ -62,7 +77,9 @@ function Login() {
           variant="outlined"
           type={userInput.showPassword ? "text" : "password"}
           autoComplete="off"
-          onChange={(event) => setUserInput({...userInput, password: event.target.value})}
+          onChange={(event) =>
+            setUserInput({ ...userInput, password: event.target.value })
+          }
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
