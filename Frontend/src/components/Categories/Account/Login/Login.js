@@ -8,7 +8,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Login() {
   const navigate = useNavigate();
-  const {user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const navigateToAccountPage = () => {
     navigate("/createaccount");
@@ -19,6 +19,8 @@ function Login() {
     password: "",
     showPassword: false,
   });
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const showOrHidePassword = () => {
     if (userInput.showPassword) {
@@ -38,21 +40,33 @@ function Login() {
         password: userInput.password,
       }),
     })
-      .then((response) => response.json())
-      .then((data) =>
-        setUser({
-          user: {
-            firstname: data.user.firstname,
-            lastname: data.user.lastname,
-            email: data.user.email,
-          },
-          accessToken: data.accessToken,
-          isLoggedIn: true,
-        })
-      );
-      if(user.isLoggedIn){
-        navigate("/");
-      }
+      .then((response) => {
+        if(response.ok){
+          return response.json();
+        }
+        else{
+          response.json().then(data => {
+            setErrorMessage(data.error);
+          })
+        }
+      })
+      .then((data) => {
+        if(data != null){
+          console.log(data);
+          setUser({
+            user: {
+              firstname: data.user.firstname,
+              lastname: data.user.lastname,
+              email: data.user.email,
+            },
+            accessToken: data.accessToken,
+            isLoggedIn: true,
+          });
+        }
+        else{
+          return undefined;
+        }
+      });
   };
 
   return (
