@@ -33,7 +33,7 @@ function Navbar() {
       <div className="account-category">
         <div className="account-section">
           {user.isLoggedIn ? (
-            <Link className="link" to="/profile">Welcome {user.user.firstname}</Link>
+            <Link className="link" to="/profile">{user.user.firstname}</Link>
           ) : (
             <Link className="link" to="/login">
               <PersonIcon sx={{ verticalAlign: "middle" }} />
