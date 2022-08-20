@@ -73,6 +73,7 @@ function Login() {
     <form className="login-box" onSubmit={login}>
       <div className="header">
         <h2>Login</h2>
+        {errorMessage ? <p>{errorMessage}</p> : null}
       </div>
       <div className="body">
         <TextField
