@@ -12,7 +12,7 @@ function RenderSpecificClothes({ array }) {
       {array.map((array) => {
         return (
           <div className="product" key={array.id} onClick={() => navigateToProduct(array.id)}>
-            <img src={array.image}></img>
+            <img className="thumbnail" src={array.image}></img>
             <div className="product-info">
               <p className="title">{array.title}</p>
               <p className="price">{array.price} €</p>
