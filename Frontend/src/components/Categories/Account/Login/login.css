@@ -1,5 +1,6 @@
 .login-box {
-  border: solid rgb(160, 160, 160) 1px;
+  border: solid rgb(0, 0, 0) 1px;
+  background-color: white;
   display: flex;
   width: 400px;
   margin: 0px auto;
@@ -7,13 +8,33 @@
   justify-content: center;
 }
 
+.login-box > .header{
+  color: rgb(255, 255, 255);
+  background-color: rgb(95, 95, 255);
+  border-bottom: 1px solid black;
+}
+
+.login-box > .header > h2{
+  margin: 20px 0px 0px 0px;
+}
+
 .login-box > .body {
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 90%;
   padding: 20px;
   margin: 0px auto;
+}
+
+.errorMessage{
+  background-color: red;
+  padding: 10px;
+  color: white;      
+  font-weight: bold;
+  text-align: center;
+  margin: 10px;
 }
 
 .login-box > .body > .buttons{
@@ -25,16 +46,6 @@
     flex-direction: column;
     justify-content: center;
     margin: 0px auto;
-}
-
-.login-box > .body > .buttons > .submit-button {
-  font-family: "Dongle", sans-serif;
-  font-size: x-large;
-  background-color: rgb(255, 255, 255);
-  border: 1px rgb(172, 172, 172) solid;
-  width: 150px;
-  height: 50px;
-  margin-bottom: 5px;
 }
 
 .login-box > .body > .buttons > .submit-button:hover {
