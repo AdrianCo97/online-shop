@@ -39,13 +39,10 @@
 
 .login-box > .body > .buttons{
     display: flex;
-    width: 90%;
     border-top: 1px solid black;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 20px;
     flex-direction: column;
-    justify-content: center;
-    margin: 0px auto;
 }
 
 .login-box > .body > .buttons > .submit-button:hover {
