@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../../../../contexts/UserContext.js";
 import "./login.css";
-import CloseIcon from '@mui/icons-material/Close';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import CloseIcon from "@mui/icons-material/Close";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Login() {
@@ -29,7 +29,10 @@ function Login() {
     showPassword: false,
   });
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState({
+    message: "",
+    isError: false,
+  });
 
   const showOrHidePassword = () => {
     if (userInput.showPassword) {
@@ -54,7 +57,7 @@ function Login() {
           return response.json();
         } else {
           response.json().then((data) => {
-            setErrorMessage(data.error);
+            setErrorMessage({ message: data.error, isError: true });
           });
         }
       })
@@ -77,81 +80,77 @@ function Login() {
   };
 
   return (
-    <body>
-      <form className="login-box" onSubmit={login}>
-        <div className="header">
-          <h2>Login</h2>
-        </div>
-        <div className="body">
-          <TextField
-            id="email"
-            required
-            label="Email"
-            variant="filled"
-            type="email"
-            sx={{ mb: 2 }}
-            onChange={(event) =>
-              setUserInput({ ...userInput, email: event.target.value })
-            }
-          />
-          <TextField
-            id="password"
-            required
-            label="Password"
-            variant="filled"
-            type={userInput.showPassword ? "text" : "password"}
-            autoComplete="off"
-            onChange={(event) =>
-              setUserInput({ ...userInput, password: event.target.value })
-            }
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={showOrHidePassword}>
-                    {userInput.showPassword ? (
-                      <VisibilityIcon />
-                    ) : (
-                      <VisibilityOffIcon />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ mb: 2 }}
-          />
-          <Collapse in={errorMessage} sx={{ mb: 2 }}>
-            <Alert
-              severity="error"
-              action={
-                <IconButton onClick={() => setErrorMessage("")}>
-                  <CloseIcon></CloseIcon>
+    <form className="login-box" onSubmit={login}>
+      <div className="header">
+        <h2>Login</h2>
+      </div>
+      <div className="body">
+        <TextField
+          id="email"
+          required
+          label="Email"
+          variant="filled"
+          type="email"
+          sx={{ mb: 2 }}
+          onChange={(event) =>
+            setUserInput({ ...userInput, email: event.target.value })
+          }
+        />
+        <TextField
+          id="password"
+          required
+          label="Password"
+          variant="filled"
+          type={userInput.showPassword ? "text" : "password"}
+          autoComplete="off"
+          onChange={(event) =>
+            setUserInput({ ...userInput, password: event.target.value })
+          }
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={showOrHidePassword}>
+                  {userInput.showPassword ? (
+                    <VisibilityIcon />
+                  ) : (
+                    <VisibilityOffIcon />
+                  )}
                 </IconButton>
-              }
-            >
-              <AlertTitle>{errorMessage}</AlertTitle>
-            </Alert>
-          </Collapse>
-          <div className="buttons">
-            <Button
-              type="submit"
-              sx={{ width: 200, mb: 1 }}
-              variant="contained"
-            >
-              Login
-            </Button>
-            <Button
-              sx={{ width: 200 }}
-              variant="contained"
-              onClick={() => {
-                navigateToAccountPage();
-              }}
-            >
-              Not registered?
-            </Button>
-          </div>
+              </InputAdornment>
+            ),
+          }}
+          sx={{ mb: 2 }}
+        />
+        <Collapse in={errorMessage.isError} sx={{ mb: 2 }}>
+          <Alert
+            severity="error"
+            action={
+              <IconButton
+                onClick={() => setErrorMessage({ isError: false, message: "" })}
+              >
+                <CloseIcon></CloseIcon>
+              </IconButton>
+            }
+          >
+            <AlertTitle>{errorMessage.message}</AlertTitle>
+          </Alert>
+        </Collapse>
+        <div className="buttons">
+          <Button type="submit" sx={{ width: 200, mb: 1 }} variant="contained">
+            Login
+          </Button>
+          <Button
+            sx={{ width: 200 }}
+            variant="contained"
+            onClick={() => {
+              navigateToAccountPage();
+            }}
+          >
+            Not registered?
+          </Button>
         </div>
-      </form>
-    </body>
+      </div>
+    </form>
   );
 }
 
