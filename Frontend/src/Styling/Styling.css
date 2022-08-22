@@ -21,12 +21,30 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content:space-between;
-  border: 1px solid rgb(190, 190, 190);
+  border: 1px solid rgb(0, 0, 0);
   width: 200px;
   height: 250px;
   margin: 10px;
-  padding: 10px;
   cursor: pointer;
+}
+
+.product > .product-header{
+  background-color: rgb(95, 95, 255);
+  border-bottom: 1px solid black;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.product > .product-header > .title{
+  overflow: hidden;
+  text-align: center; 
+  font-weight: bold;
+  color: white;
+  height: 30px;
+  width: 90%;
 }
 
 .product:hover{
@@ -36,21 +54,12 @@ body{
 
 .product-info{
   border-top: solid black 1px;
-  height: 50%;
   width: 100%;
 }
 
 .product > .thumbnail{
   max-width: 80%;
-  max-height: 40%;
-}
-
-.product-info > .title {
-  width: 80%;
-  height: 30px;
-  overflow: hidden;
-  text-align: center; 
-  margin: 0 auto;             
+  max-height: 30%;
 }
 
 .product-info > .price {
