@@ -1,14 +1,21 @@
 import { useState } from "react";
-import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Collapse,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import "./createAccount.css";
 
 function CreateAccount() {
+  const url = "http://localhost:5000";
 
-  const url = "http://localhost:5000"
-  
   const navigate = useNavigate();
 
   const [userInput, setUserInput] = useState({
@@ -16,6 +23,11 @@ function CreateAccount() {
     lastname: "",
     email: "",
     password: "",
+  });
+
+  const [error, setError] = useState({
+    message: "",
+    isError: false,
   });
 
   const [passwordState, setPasswordState] = useState({
@@ -26,10 +38,10 @@ function CreateAccount() {
   const createAccount = async () => {
     await fetch(`${url}/api/auth/register`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(userInput)
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInput),
     });
-  }
+  };
 
   const changePasswordVisability = () => {
     if (!passwordState.showPassword) {
@@ -45,7 +57,8 @@ function CreateAccount() {
         <h2>Create Account</h2>
       </div>
       <div className="body">
-        <TextField required
+        <TextField
+          required
           label="firstname"
           variant="filled"
           sx={{ mb: 2 }}
@@ -53,7 +66,8 @@ function CreateAccount() {
             setUserInput({ ...userInput, firstname: e.target.value })
           }
         />
-        <TextField required
+        <TextField
+          required
           label="lastname"
           variant="filled"
           sx={{ mb: 2 }}
@@ -61,7 +75,8 @@ function CreateAccount() {
             setUserInput({ ...userInput, lastname: e.target.value })
           }
         />
-        <TextField required
+        <TextField
+          required
           label="email"
           variant="filled"
           sx={{ mb: 2 }}
@@ -69,7 +84,8 @@ function CreateAccount() {
             setUserInput({ ...userInput, email: e.target.value })
           }
         />
-        <TextField required
+        <TextField
+          required
           label="password"
           variant="filled"
           type={passwordState.showPassword ? "text" : "password"}
@@ -78,7 +94,7 @@ function CreateAccount() {
             setUserInput({ ...userInput, password: e.target.value })
           }
           autoComplete="off"
-          inputProps={{minLength: 5, maxLength: 30}}
+          inputProps={{ minLength: 5, maxLength: 30 }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -93,9 +109,32 @@ function CreateAccount() {
             ),
           }}
         />
+
+        <Collapse in={error.isError} sx={{ mb: 2 }}>
+          <Alert severity="error">
+            <IconButton
+              onClick={() => setError({ message: "", isError: false })}
+            >
+              <CloseIcon></CloseIcon>
+            </IconButton>
+          </Alert>
+        </Collapse>
         <div className="buttons">
-          <Button type="submit" sx={{width: 300, mb: 1}} variant="contained" onClick={createAccount}>Create account</Button>
-          <Button sx={{width: 300}} variant="contained" onClick={() => navigate("/login")}>Already have an account?</Button>
+          <Button
+            type="submit"
+            sx={{ width: 300, mb: 1 }}
+            variant="contained"
+            onClick={createAccount}
+          >
+            Create account
+          </Button>
+          <Button
+            sx={{ width: 300 }}
+            variant="contained"
+            onClick={() => navigate("/login")}
+          >
+            Already have an account?
+          </Button>
         </div>
       </div>
     </form>
