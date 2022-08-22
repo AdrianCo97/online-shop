@@ -8,6 +8,8 @@ import "./createAccount.css";
 function CreateAccount() {
 
   const url = "http://localhost:5000"
+  
+  const navigate = useNavigate();
 
   const [userInput, setUserInput] = useState({
     firstname: "",
@@ -28,11 +30,6 @@ function CreateAccount() {
       body: JSON.stringify(userInput)
     });
   }
-
-  const navigate = useNavigate();
-  const navigateToLoginPage = () => {
-    navigate("/login");
-  };
 
   const changePasswordVisability = () => {
     if (!passwordState.showPassword) {
