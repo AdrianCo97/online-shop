@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -50,6 +50,7 @@ function CreateAccount() {
       <div className="body">
         <TextField required
           label="firstname"
+          variant="filled"
           sx={{ mb: 2 }}
           onChange={(e) =>
             setUserInput({ ...userInput, firstname: e.target.value })
@@ -57,6 +58,7 @@ function CreateAccount() {
         />
         <TextField required
           label="lastname"
+          variant="filled"
           sx={{ mb: 2 }}
           onChange={(e) =>
             setUserInput({ ...userInput, lastname: e.target.value })
@@ -64,6 +66,7 @@ function CreateAccount() {
         />
         <TextField required
           label="email"
+          variant="filled"
           sx={{ mb: 2 }}
           onChange={(e) =>
             setUserInput({ ...userInput, email: e.target.value })
@@ -71,6 +74,7 @@ function CreateAccount() {
         />
         <TextField required
           label="password"
+          variant="filled"
           type={passwordState.showPassword ? "text" : "password"}
           sx={{ mb: 2 }}
           onChange={(e) =>
@@ -93,10 +97,8 @@ function CreateAccount() {
           }}
         />
         <div className="buttons">
-          <button type="submit">Create account</button>
-          <button onClick={navigateToLoginPage}>
-            Already have an account?
-          </button>
+          <Button sx={{width: 200, mb: 1}} variant="contained">Create account</Button>
+          <Button sx={{width: 200}} variant="contained">Create account</Button>
         </div>
       </div>
     </form>
