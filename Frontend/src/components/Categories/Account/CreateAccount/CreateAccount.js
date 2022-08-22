@@ -36,18 +36,18 @@ function CreateAccount() {
     showPassword: false,
   });
 
-  const createAccount = async () => {
+  const createAccount = async (e) => {
+    e.preventDefault();
     await fetch(`${url}/api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInput),
     }).then((response) => {
       if (!response.ok) {
-        return response.json().then((data) => {
+        response.json().then((data) => {
           setError({ message: data.error, isError: true });
         });
-      }
-      else{
+      } else {
         navigate("/login");
       }
     });
@@ -136,9 +136,12 @@ function CreateAccount() {
         </Collapse>
         <div className="buttons">
           <Button
+            type="submit"
             sx={{ width: 300, mb: 1 }}
             variant="contained"
-            onClick={createAccount}
+            onClick={() => {
+              createAccount();
+            }}
           >
             Create account
           </Button>

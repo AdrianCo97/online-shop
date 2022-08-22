@@ -57,6 +57,7 @@ function Login() {
           return response.json();
         } else {
           response.json().then((data) => {
+            e.preventDefault();
             setErrorMessage({ message: data.error, isError: true });
           });
         }
@@ -73,6 +74,7 @@ function Login() {
             accessToken: data.accessToken,
             isLoggedIn: true,
           });
+          navigate("/")
         } else {
           return undefined;
         }
