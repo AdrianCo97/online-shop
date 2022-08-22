@@ -19,9 +19,11 @@ function Electronics() {
   return (
     <div>
       <Navbar />
-      <div className="products">
+      <div className="main-content">
         <h3>Electronics</h3>
-        <RenderArrayContent array={electronics} />
+        <div className="products">
+          <RenderArrayContent array={electronics} />
+        </div>
       </div>
     </div>
   );
