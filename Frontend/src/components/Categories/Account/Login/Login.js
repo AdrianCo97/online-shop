@@ -1,9 +1,18 @@
-import { IconButton, InputAdornment, TextField, Button } from "@mui/material";
+import {
+  IconButton,
+  InputAdornment,
+  TextField,
+  Button,
+  Collapse,
+  Alert,
+  AlertTitle,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../../../../contexts/UserContext.js";
 import "./login.css";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import CloseIcon from '@mui/icons-material/Close';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Login() {
@@ -110,10 +119,35 @@ function Login() {
             }}
             sx={{ mb: 2 }}
           />
-          {errorMessage ? <p className="errorMessage">{errorMessage}</p> : null}
+          <Collapse in={errorMessage} sx={{ mb: 2 }}>
+            <Alert
+              severity="error"
+              action={
+                <IconButton onClick={() => setErrorMessage("")}>
+                  <CloseIcon></CloseIcon>
+                </IconButton>
+              }
+            >
+              <AlertTitle>{errorMessage}</AlertTitle>
+            </Alert>
+          </Collapse>
           <div className="buttons">
-            <Button type="submit" sx={{width: 200, mb: 1}} variant="contained">Login</Button>
-            <Button sx={{width: 200}} variant="contained" onClick={() => {navigateToAccountPage()}}>Not registered?</Button>
+            <Button
+              type="submit"
+              sx={{ width: 200, mb: 1 }}
+              variant="contained"
+            >
+              Login
+            </Button>
+            <Button
+              sx={{ width: 200 }}
+              variant="contained"
+              onClick={() => {
+                navigateToAccountPage();
+              }}
+            >
+              Not registered?
+            </Button>
           </div>
         </div>
       </form>
