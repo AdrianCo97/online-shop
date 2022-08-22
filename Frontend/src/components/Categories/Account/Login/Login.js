@@ -1,4 +1,4 @@
-import { IconButton, InputAdornment, TextField} from "@mui/material";
+import { IconButton, InputAdornment, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../../../../contexts/UserContext.js";
@@ -41,17 +41,16 @@ function Login() {
       }),
     })
       .then((response) => {
-        if(response.ok){
+        if (response.ok) {
           return response.json();
-        }
-        else{
-          response.json().then(data => {
+        } else {
+          response.json().then((data) => {
             setErrorMessage(data.error);
-          })
+          });
         }
       })
       .then((data) => {
-        if(data != null){
+        if (data != null) {
           console.log(data);
           setUser({
             user: {
@@ -62,62 +61,63 @@ function Login() {
             accessToken: data.accessToken,
             isLoggedIn: true,
           });
-        }
-        else{
+        } else {
           return undefined;
         }
       });
   };
 
   return (
-    <form className="login-box" onSubmit={login}>
-      <div className="header">
-        <h2>Login</h2>
-        {errorMessage ? <p>{errorMessage}</p> : null}
-      </div>
-      <div className="body">
-        <TextField
-          id="email"
-          label="Email"
-          variant="outlined"
-          type="email"
-          sx={{ mb: 2 }}
-          onChange={(event) =>
-            setUserInput({ ...userInput, email: event.target.value })
-          }
-        />
-        <TextField
-          id="password"
-          label="Password"
-          variant="outlined"
-          type={userInput.showPassword ? "text" : "password"}
-          autoComplete="off"
-          onChange={(event) =>
-            setUserInput({ ...userInput, password: event.target.value })
-          }
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={showOrHidePassword}>
-                  {userInput.showPassword ? (
-                    <VisibilityIcon />
-                  ) : (
-                    <VisibilityOffIcon />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          sx={{ mb: 2 }}
-        />
-        <div className="buttons">
-          <button className="submit-button">Login</button>
-          <button onClick={navigateToAccountPage} className="submit-button">
-            Not registered?
-          </button>
+    <body>
+      <form className="login-box" onSubmit={login}>
+        <div className="header">
+          <h2>Login</h2>
         </div>
-      </div>
-    </form>
+        <div className="body">
+          <TextField
+            id="email"
+            required
+            label="Email"
+            variant="filled"
+            type="email"
+            sx={{ mb: 2 }}
+            onChange={(event) =>
+              setUserInput({ ...userInput, email: event.target.value })
+            }
+          />
+          <TextField
+            id="password"
+            required
+            label="Password"
+            variant="filled"
+            type={userInput.showPassword ? "text" : "password"}
+            autoComplete="off"
+            onChange={(event) =>
+              setUserInput({ ...userInput, password: event.target.value })
+            }
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={showOrHidePassword}>
+                    {userInput.showPassword ? (
+                      <VisibilityIcon />
+                    ) : (
+                      <VisibilityOffIcon />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            sx={{ mb: 2 }}
+          />
+          {errorMessage ? <p className="errorMessage">{errorMessage}</p> : null}
+          <div className="buttons">
+            <Button type="submit" sx={{width: 200, mb: 1}} variant="contained">Login</Button>
+            <Button sx={{width: 200}} variant="contained" onClick={() => {navigateToAccountPage()}}>Not registered?</Button>
+          </div>
+        </div>
+      </form>
+    </body>
   );
 }
 
