@@ -8,8 +8,8 @@ function Accessories() {
 
   useEffect(() => {
     const jeweleryArray = [];
-    for(let i = 0; i < jsonData.length; i++) {
-      if(jsonData[i].category === "jewelery") {
+    for (let i = 0; i < jsonData.length; i++) {
+      if (jsonData[i].category === "jewelery") {
         jeweleryArray.push(jsonData[i]);
       }
     }
@@ -21,11 +21,11 @@ function Accessories() {
       <Navbar />
 
       <div className="main-content">
+        <h3>Electronics</h3>
         <div className="products">
-          <RenderArrayContent array={jewelery}/>
+          <RenderArrayContent array={jewelery} />
         </div>
       </div>
-
     </div>
   );
 }

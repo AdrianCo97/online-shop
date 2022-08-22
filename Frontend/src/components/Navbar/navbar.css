@@ -1,8 +1,7 @@
 .background{
-  background-color: #ffffff;
+  background-color: rgb(95, 95, 255);
   display:flex;
   justify-content: space-between;
-  height: 45px;
   padding: 5px;
   border-bottom: 2px solid black;
 }
@@ -16,7 +15,7 @@
 .link{
   width: 110px;
   border: none;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-family: 'Dongle', sans-serif;
   font-size: 30px;
   text-align: center;
