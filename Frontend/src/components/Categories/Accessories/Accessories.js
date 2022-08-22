@@ -21,7 +21,7 @@ function Accessories() {
       <Navbar />
 
       <div className="main-content">
-        <h3>Electronics</h3>
+        <h3>Accessories</h3>
         <div className="products">
           <RenderArrayContent array={jewelery} />
         </div>
