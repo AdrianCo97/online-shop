@@ -97,8 +97,8 @@ function CreateAccount() {
           }}
         />
         <div className="buttons">
-          <Button sx={{width: 200, mb: 1}} variant="contained">Create account</Button>
-          <Button sx={{width: 200}} variant="contained">Create account</Button>
+          <Button type="submit" sx={{width: 300, mb: 1}} variant="contained" onClick={createAccount}>Create account</Button>
+          <Button sx={{width: 300}} variant="contained" onClick={() => navigate("/login")}>Already have an account?</Button>
         </div>
       </div>
     </form>
