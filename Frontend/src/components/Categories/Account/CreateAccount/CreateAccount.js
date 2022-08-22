@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Alert,
+  AlertTitle,
   Button,
   Collapse,
   IconButton,
@@ -40,6 +41,15 @@ function CreateAccount() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInput),
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((data) => {
+          setError({ message: data.error, isError: true });
+        });
+      }
+      else{
+        navigate("/login");
+      }
     });
   };
 
@@ -111,17 +121,21 @@ function CreateAccount() {
         />
 
         <Collapse in={error.isError} sx={{ mb: 2 }}>
-          <Alert severity="error">
-            <IconButton
-              onClick={() => setError({ message: "", isError: false })}
-            >
-              <CloseIcon></CloseIcon>
-            </IconButton>
+          <Alert
+            severity="error"
+            action={
+              <IconButton
+                onClick={() => setError({ message: "", isError: false })}
+              >
+                <CloseIcon></CloseIcon>
+              </IconButton>
+            }
+          >
+            {error.message}
           </Alert>
         </Collapse>
         <div className="buttons">
           <Button
-            type="submit"
             sx={{ width: 300, mb: 1 }}
             variant="contained"
             onClick={createAccount}
