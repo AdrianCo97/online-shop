@@ -1,6 +1,5 @@
 .create-account-box {
-  border: solid rgb(160, 160, 160) 1px;
-  border-radius: 7px;
+  border: solid rgb(0, 0, 0) 1px;
   display: flex;
   width: 400px;
   margin: 0px auto;
@@ -8,34 +7,30 @@
   justify-content: center;
 }
 
+.create-account-box > .header {
+  color: rgb(255, 255, 255);
+  background-color: rgb(95, 95, 255);
+  border-bottom: 1px solid black;
+}
+
+.create-account-box > .header > h2 {
+  margin: 20px 0px 0px 0px;
+}
+
 .create-account-box > .body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 90%;
-    padding: 20px;
-    margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  padding: 20px;
+  margin: 0px auto;
 }
 
-.create-account-box > .body > .buttons{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.create-account-box > .body > .buttons > button {
-  font-family: "Dongle", sans-serif;
-  font-size: x-large;
-  background-color: rgb(255, 255, 255);
-  border: 1px rgb(172, 172, 172) solid;
-  border-radius: 7px;
-  width: 200px;
-  height: 50px;
-  margin-bottom: 5px;
-}
-
-.create-account-box > .body > .buttons > button:hover {
-  transform: scale(1.01);
-  transition: 0.3s;
-  cursor: pointer;
+.create-account-box > .body > .buttons {
+  border-top: 1px solid black;
+  display: flex;
+  margin-top: 20px;
+  padding-top: 20px;
+  flex-direction: column;
+  align-items: center;
 }

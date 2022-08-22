@@ -1,8 +1,17 @@
-import { IconButton, InputAdornment, TextField, useInput } from "@mui/material";
+import {
+  IconButton,
+  InputAdornment,
+  TextField,
+  Button,
+  Collapse,
+  Alert,
+  AlertTitle,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../../../../contexts/UserContext.js";
 import "./login.css";
+import CloseIcon from "@mui/icons-material/Close";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -20,7 +29,10 @@ function Login() {
     showPassword: false,
   });
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState({
+    message: "",
+    isError: false,
+  });
 
   const showOrHidePassword = () => {
     if (userInput.showPassword) {
@@ -41,17 +53,16 @@ function Login() {
       }),
     })
       .then((response) => {
-        if(response.ok){
+        if (response.ok) {
           return response.json();
-        }
-        else{
-          response.json().then(data => {
-            setErrorMessage(data.error);
-          })
+        } else {
+          response.json().then((data) => {
+            setErrorMessage({ message: data.error, isError: true });
+          });
         }
       })
       .then((data) => {
-        if(data != null){
+        if (data != null) {
           console.log(data);
           setUser({
             user: {
@@ -62,8 +73,7 @@ function Login() {
             accessToken: data.accessToken,
             isLoggedIn: true,
           });
-        }
-        else{
+        } else {
           return undefined;
         }
       });
@@ -73,13 +83,13 @@ function Login() {
     <form className="login-box" onSubmit={login}>
       <div className="header">
         <h2>Login</h2>
-        {errorMessage ? <p>{errorMessage}</p> : null}
       </div>
       <div className="body">
         <TextField
           id="email"
+          required
           label="Email"
-          variant="outlined"
+          variant="filled"
           type="email"
           sx={{ mb: 2 }}
           onChange={(event) =>
@@ -88,8 +98,9 @@ function Login() {
         />
         <TextField
           id="password"
+          required
           label="Password"
-          variant="outlined"
+          variant="filled"
           type={userInput.showPassword ? "text" : "password"}
           autoComplete="off"
           onChange={(event) =>
@@ -110,11 +121,33 @@ function Login() {
           }}
           sx={{ mb: 2 }}
         />
+        <Collapse in={errorMessage.isError} sx={{ mb: 2 }}>
+          <Alert
+            severity="error"
+            action={
+              <IconButton
+                onClick={() => setErrorMessage({ isError: false, message: "" })}
+              >
+                <CloseIcon></CloseIcon>
+              </IconButton>
+            }
+          >
+            <AlertTitle>{errorMessage.message}</AlertTitle>
+          </Alert>
+        </Collapse>
         <div className="buttons">
-          <button className="submit-button">Login</button>
-          <button onClick={navigateToAccountPage} className="submit-button">
+          <Button type="submit" sx={{ width: 200, mb: 1 }} variant="contained">
+            Login
+          </Button>
+          <Button
+            sx={{ width: 200 }}
+            variant="contained"
+            onClick={() => {
+              navigateToAccountPage();
+            }}
+          >
             Not registered?
-          </button>
+          </Button>
         </div>
       </div>
     </form>

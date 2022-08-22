@@ -54,6 +54,7 @@ function Clothes() {
     <div>
       <Navbar />
       <div className="clothes-header">
+      <h3>Clothes</h3>
         <FormControl sx={{width: "200px", margin: "20px"}}>
           <InputLabel>Gender</InputLabel>
           <Select
