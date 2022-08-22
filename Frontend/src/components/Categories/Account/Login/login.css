@@ -44,9 +44,3 @@
     padding-top: 20px;
     flex-direction: column;
 }
-
-.login-box > .body > .buttons > .submit-button:hover {
-  transform: scale(1.01);
-  transition: 0.3s;
-  cursor: pointer;
-}
