@@ -24,12 +24,12 @@ function Product() {
   return (
     <div>
       <Navbar />
-      <div className="pageContent">
-        <div className="header">
+      <div className="product-page-body">
+        <div className="product-page-header">
           <img src={product.image}></img>
           <p>{product.title}</p>
-          <div className="footer">
-            <h1 className="price">{product.price} €</h1>
+          <div className="product-page-footer">
+            <h1 className="product-page-price">{product.price} €</h1>
 
             <button onClick={() => addToCartFunction(product)}>
               Add to cart
@@ -37,7 +37,7 @@ function Product() {
           </div>
         </div>
 
-        <div className="productInfo">
+        <div className="product-page-info">
           <p>{product.description}</p>
         </div>
       </div>
