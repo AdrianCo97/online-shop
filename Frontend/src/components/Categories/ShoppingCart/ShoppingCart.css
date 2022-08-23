@@ -1,10 +1,10 @@
-.header {
-  display: flex;
-  padding-bottom: 20px;
-  border: none;
+.shopping-cart-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center
 }
 
-.header > .enabledButton {
+.shopping-cart-header > .enabledButton {
   font-family: "Dongle", sans-serif;
   font-size: x-large;
   background-color: rgb(44, 182, 44);
