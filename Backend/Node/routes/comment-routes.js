@@ -25,4 +25,16 @@ router.post("/comment", async (req, res) => {
     }
 });
 
+router.get("/comments", async (req, res) => {
+    const productId = req.body.productId;
+    try{
+        const comments = await Comment.find({productId: productId})
+
+        res.status(200).json(comments);
+    }
+    catch(err){
+        res.status(500).json({error: err.message});
+    }
+})
+
 export default router;
