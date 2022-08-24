@@ -8,6 +8,13 @@ const jsonData = require("../../../data/products.json");
 function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const [comments, setComments] = useState([
+    {
+      commentAmount: 0,
+      fromUser: "",
+      commentMessage: "",
+    },
+  ]);
   const { productsInCart, setProductsInCart } = useContext(CartContext);
 
   useEffect(() => {
@@ -57,11 +64,28 @@ function Product() {
 
           <div className="product-page-specifics-ratings">
             <div className="product-page-specifics-ratings-header">
-              <h2 className="product-page-specifics-ratings-title">Ratings</h2>
+              <h2 className="product-page-specifics-ratings-title">Reviews</h2>
             </div>
-            <div className="product-page-specifics-ratings-comment-section">
-              <TextField className="product-page-specifics-ratings-comment-box" multiline label="What did you think about this product?"></TextField>
+            <div className="product-page-specifics-ratings-comments">
+              {comments.commentsAmount === 0 ? (
+                comments.map((comment) => {
+                  <div className="product-page-specifics-ratings-comment">
+                    <p>By user: {comment.fromUser}</p>
+                    <p>{comment.commentMessage}</p>
+                  </div>
+                })
+              ) : (
+                <p>There are no reviews for this product.</p>
+              )}
             </div>
+            <form className="product-page-specifics-ratings-comment-section">
+              <TextField sx={{mr: 1}}
+                className="product-page-specifics-ratings-comment-box"
+                multiline
+                label="What did you think about this product?"
+              ></TextField>
+              <Button type="submit" variant="contained">Submit</Button>
+            </form>
           </div>
         </div>
       </div>

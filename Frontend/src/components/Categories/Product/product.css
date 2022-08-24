@@ -82,6 +82,7 @@
 
 .product-page-specifics-ratings{
   border-top: solid 1px black;
+  height: fit-content;
 }
 
 .product-page-specifics-ratings-header{
@@ -96,15 +97,20 @@
   margin: 0px;
 }
 
-.product-page-specifics-ratings-comment-section{
+.product-page-specifics-ratings-comments{
+  height: 40px;
   margin: 10px;
+  text-align: center;
+}
+
+.product-page-specifics-ratings-comment-section{
+  padding: 10px;
   display: flex;
   justify-content: center;
-  border: solid 1px black;
+  border-top: solid 1px rgb(201, 201, 201);
 }
 
 .product-page-specifics-ratings-comment-box{
-  width: 98%;
-  margin: 10px;
+  width: 95%;
 }
 
