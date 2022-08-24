@@ -1,46 +1,82 @@
-.pageContent {
-  margin-top: 50px;
-  display: block;
-  align-items: center;
+.product-page{
+  display: flex;
+
 }
 
-.header {
+.product-page-product-body{
+  width: 60%;
+  height: 700px;
+  border: solid 1px black;
+  margin: 20px;
+}
+
+.product-page-product-header{
+  background-color: rgb(95, 95, 255);
   display: flex;
-  flex-direction: column;
   align-items: center;
+  text-align: center;
+  color: white;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 100px;
   border-bottom: solid 1px black;
 }
 
-.header > img {
-  width: 150px;
-}
-
-.header > .footer{
-    justify-content: space-between;
-}
-
-.header > .footer > .price {
+.product-page-product-title{
   margin: 0px;
-  text-align: center;
+  width: 100%;
 }
 
-.header > .footer > button {
-  font-family: "Dongle", sans-serif;
-  font-size: x-large;
-  background-color: rgb(44, 182, 44);
-  border: none;
-  border-radius: 7px;
-  width: 150px;
-  height: 50px;
+.product-page-product-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.header > .footer > button:hover {
-  transform: scale(1.01);
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.productInfo {
+.product-page-product-image{
+  max-width: 50%;
+  max-height: 40%;
   margin: 0 auto;
-  width: 70%;
 }
+
+.product-page-product-footer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid black;
+  margin-top: 20px;
+  padding-bottom: 30px;;
+}
+
+.product-page-product-price{
+  margin: 5px;
+}
+
+.product-page-specifics{
+  width: 40%;
+  height: fit-content;
+  border: solid 1px black;
+  margin: 20px;
+}
+
+.product-page-specifics-description-box-header{
+  border-bottom: 1px solid black;
+  color: white;
+  text-align: center;
+  background-color: rgb(95, 95, 255);
+  height: 50;
+}
+
+.product-page-specifics-description-box-title{
+  margin: 0px;
+}
+
+.product-page-specifics-description-box-text{
+  margin: 20px; 
+  padding: 10px;
+  text-align: center;
+  border: solid 1px black;
+}
+

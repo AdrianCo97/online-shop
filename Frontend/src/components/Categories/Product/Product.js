@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../../Navbar/Navbar.js";
 import "./product.css";
 import { CartContext } from "../../../contexts/CartContext.js";
+import { Button } from "@mui/material";
 const jsonData = require("../../../data/products.json");
 function Product() {
   const { id } = useParams();
@@ -24,21 +25,33 @@ function Product() {
   return (
     <div>
       <Navbar />
-      <div className="product-page-body">
-        <div className="product-page-header">
-          <h2 className="product-page-title">{product.title}</h2>
-        </div>
-        <img className="product-page-image" src={product.image} />
-        <div className="product-page-footer">
-          <h1 className="product-page-price">{product.price} €</h1>
+      <div className="product-page">
+        <div className="product-page-product-body">
+          <div className="product-page-product-header">
+            <h2 className="product-page-product-title">{product.title}</h2>
+          </div>
+          <img className="product-page-product-image" src={product.image} />
+          <div className="product-page-product-footer">
+            <h1 className="product-page-product-price">{product.price} €</h1>
 
-          <button onClick={() => addToCartFunction(product)}>
-            Add to cart
-          </button>
+            <Button
+              variant="contained"
+              sx={{ width: 300 }}
+              onClick={() => addToCartFunction(product)}
+            >
+              Add to cart
+            </Button>
+          </div>
         </div>
-
-        <div className="product-page-info">
-          <p>{product.description}</p>
+        <div className="product-page-specifics">
+          <div className="product-page-specifics-description-box">
+            <div className="product-page-specifics-description-box-header">
+              <h2 className="product-page-specifics-description-box-title">Description</h2>
+            </div>
+            <div className="product-page-specifics-description-box-text">
+              {product.description}
+            </div>
+          </div>
         </div>
       </div>
     </div>
