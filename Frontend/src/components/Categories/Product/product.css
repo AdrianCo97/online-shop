@@ -74,9 +74,37 @@
 }
 
 .product-page-specifics-description-box-text{
-  margin: 20px; 
+  margin: 10px; 
   padding: 10px;
   text-align: center;
   border: solid 1px black;
+}
+
+.product-page-specifics-ratings{
+  border-top: solid 1px black;
+}
+
+.product-page-specifics-ratings-header{
+  border-bottom: solid 1px black;
+  background-color: rgb(95, 95, 255);
+  color: white;
+  text-align: center;
+  height: 50px;
+}
+
+.product-page-specifics-ratings-title{
+  margin: 0px;
+}
+
+.product-page-specifics-ratings-comment-section{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  border: solid 1px black;
+}
+
+.product-page-specifics-ratings-comment-box{
+  width: 98%;
+  margin: 10px;
 }
 

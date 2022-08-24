@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../../Navbar/Navbar.js";
 import "./product.css";
 import { CartContext } from "../../../contexts/CartContext.js";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 const jsonData = require("../../../data/products.json");
 function Product() {
   const { id } = useParams();
@@ -46,10 +46,21 @@ function Product() {
         <div className="product-page-specifics">
           <div className="product-page-specifics-description-box">
             <div className="product-page-specifics-description-box-header">
-              <h2 className="product-page-specifics-description-box-title">Description</h2>
+              <h2 className="product-page-specifics-description-box-title">
+                Description
+              </h2>
             </div>
             <div className="product-page-specifics-description-box-text">
               {product.description}
+            </div>
+          </div>
+
+          <div className="product-page-specifics-ratings">
+            <div className="product-page-specifics-ratings-header">
+              <h2 className="product-page-specifics-ratings-title">Ratings</h2>
+            </div>
+            <div className="product-page-specifics-ratings-comment-section">
+              <TextField className="product-page-specifics-ratings-comment-box" multiline label="What did you think about this product?"></TextField>
             </div>
           </div>
         </div>
