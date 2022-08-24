@@ -8,36 +8,24 @@
   justify-content: center;
 }
 
-.login-box > .header{
+.login-box > .login-box-header{
   color: rgb(255, 255, 255);
   background-color: rgb(95, 95, 255);
   border-bottom: 1px solid black;
+  text-align: center;
 }
 
-.login-box > .header > h2{
-  margin: 20px 0px 0px 0px;
-}
 
-.login-box > .body {
+.login-box > .login-box-body {
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 90%;
   padding: 20px;
-  margin: 0px auto;
 }
 
-.errorMessage{
-  background-color: red;
-  padding: 10px;
-  color: white;      
-  font-weight: bold;
-  text-align: center;
-  margin: 10px;
-}
-
-.login-box > .body > .buttons{
+.login-box > .login-box-body > .login-box-buttons{
     display: flex;
     border-top: 1px solid black;
     align-items: center;
