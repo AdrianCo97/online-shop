@@ -63,10 +63,10 @@ function CreateAccount() {
 
   return (
     <form className="create-account-box" onSubmit={createAccount}>
-      <div className="header">
-        <h2>Create Account</h2>
+      <div className="create-account-header">
+        <h2 className="create-account-title">Create Account</h2>
       </div>
-      <div className="body">
+      <div className="create-account-body">
         <TextField
           required
           label="firstname"
@@ -134,7 +134,7 @@ function CreateAccount() {
             {error.message}
           </Alert>
         </Collapse>
-        <div className="buttons">
+        <div className="create-account-buttons">
           <Button
             type="submit"
             sx={{ width: 300, mb: 1 }}

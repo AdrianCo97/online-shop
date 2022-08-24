@@ -7,17 +7,14 @@
   justify-content: center;
 }
 
-.create-account-box > .header {
+.create-account-box > .create-account-header {
   color: rgb(255, 255, 255);
   background-color: rgb(95, 95, 255);
   border-bottom: 1px solid black;
+  text-align: center;
 }
 
-.create-account-box > .header > h2 {
-  margin: 20px 0px 0px 0px;
-}
-
-.create-account-box > .body {
+.create-account-box > .create-account-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +23,7 @@
   margin: 0px auto;
 }
 
-.create-account-box > .body > .buttons {
+.create-account-box > .create-account-body > .create-account-buttons {
   border-top: 1px solid black;
   display: flex;
   padding-top: 20px;
