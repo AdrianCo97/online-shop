@@ -6,4 +6,4 @@ const commentSchema = new mongoose.Schema({
   comment: String,
 });
 
-export default mongoose.Schema("Comment", commentSchema);
+export default mongoose.model("Comment", commentSchema);
