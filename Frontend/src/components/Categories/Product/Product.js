@@ -26,15 +26,15 @@ function Product() {
       <Navbar />
       <div className="product-page-body">
         <div className="product-page-header">
-          <img src={product.image}></img>
-          <p>{product.title}</p>
-          <div className="product-page-footer">
-            <h1 className="product-page-price">{product.price} €</h1>
+          <h2 className="product-page-title">{product.title}</h2>
+        </div>
+        <img className="product-page-image" src={product.image} />
+        <div className="product-page-footer">
+          <h1 className="product-page-price">{product.price} €</h1>
 
-            <button onClick={() => addToCartFunction(product)}>
-              Add to cart
-            </button>
-          </div>
+          <button onClick={() => addToCartFunction(product)}>
+            Add to cart
+          </button>
         </div>
 
         <div className="product-page-info">
