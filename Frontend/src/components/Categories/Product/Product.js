@@ -10,10 +10,10 @@ function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [comments, setComments] = useState([]);
+  const [userComment, setUserComment] = useState("");
   const { productsInCart, setProductsInCart } = useContext(CartContext);
   const { user } = useContext(UserContext);
 
-  console.log(comments);
   useEffect(() => {
     for (let i = 0; i < jsonData.length; i++) {
       if (jsonData[i].id == id) {
@@ -35,7 +35,20 @@ function Product() {
     setProductsInCart([...productsInCart, product]);
   };
 
-  const submitComment = async () => {};
+  const submitComment = (e) => {
+    fetch("http://localhost:5000/api/comments/comment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        productId: product.id,
+        email: user.user.email,
+        firstname: user.user.firstname,
+        comment: userComment,
+      }),
+    }).then((response) => {
+      console.log(response.json());
+    });
+  };
 
   return (
     <div>
@@ -79,11 +92,12 @@ function Product() {
                 <p>There are no reviews for this product.</p>
               ) : (
                 comments.map((review) => {
-                  return( <div className="product-page-specifics-ratings-comment">
-                    <p>Written by: {review.byUser.firstname}</p>
-                    <p>{review.comment}</p>
-                  </div>
-                  )  
+                  return (
+                    <div className="product-page-specifics-ratings-comment">
+                      <p>Written by: {review.byUser.firstname}</p>
+                      <p>{review.comment}</p>
+                    </div>
+                  );
                 })
               )}
             </div>
@@ -97,6 +111,9 @@ function Product() {
                   className="product-page-specifics-ratings-comment-box"
                   multiline
                   label="What did you think about this product?"
+                  onChange={(e) => {
+                    setUserComment(e.target.value);
+                  }}
                 ></TextField>
                 <Button type="submit" variant="contained">
                   Submit
