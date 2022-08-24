@@ -3,7 +3,7 @@ import Comment from "../models/Comment.js";
 
 const router = express.Router();
 
-router.post("/comments", async (req, res) => {
+router.post("/comment", async (req, res) => {
     const productId = req.body.productId;
     const email = req.body.email;
     const firstname = req.body.firstname;
@@ -24,3 +24,5 @@ router.post("/comments", async (req, res) => {
         res.status(500).json({error: err.message});
     }
 });
+
+export default router;
