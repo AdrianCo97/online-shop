@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../../Navbar/Navbar.js";
 import "./product.css";
 import { CartContext } from "../../../contexts/CartContext.js";
+import { UserContext } from "../../../contexts/UserContext.js";
 import { Button, TextField } from "@mui/material";
 const jsonData = require("../../../data/products.json");
 function Product() {
@@ -10,12 +11,12 @@ function Product() {
   const [product, setProduct] = useState([]);
   const [comments, setComments] = useState([
     {
-      commentAmount: 0,
       fromUser: "",
       commentMessage: "",
     },
   ]);
   const { productsInCart, setProductsInCart } = useContext(CartContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     for (let i = 0; i < jsonData.length; i++) {
@@ -28,6 +29,8 @@ function Product() {
   const addToCartFunction = (product) => {
     setProductsInCart([...productsInCart, product]);
   };
+
+  const submitComment = async () => {};
 
   return (
     <div>
@@ -67,25 +70,33 @@ function Product() {
               <h2 className="product-page-specifics-ratings-title">Reviews</h2>
             </div>
             <div className="product-page-specifics-ratings-comments">
-              {comments.commentsAmount === 0 ? (
+              {comments.length === 0 ? (
                 comments.map((comment) => {
                   <div className="product-page-specifics-ratings-comment">
                     <p>By user: {comment.fromUser}</p>
                     <p>{comment.commentMessage}</p>
-                  </div>
+                  </div>;
                 })
               ) : (
                 <p>There are no reviews for this product.</p>
               )}
             </div>
-            <form className="product-page-specifics-ratings-comment-section">
-              <TextField sx={{mr: 1}}
-                className="product-page-specifics-ratings-comment-box"
-                multiline
-                label="What did you think about this product?"
-              ></TextField>
-              <Button type="submit" variant="contained">Submit</Button>
-            </form>
+            {user.isLoggedIn ? (
+              <form
+                className="product-page-specifics-ratings-comment-section"
+                onSubmit={submitComment}
+              >
+                <TextField
+                  sx={{ mr: 1 }}
+                  className="product-page-specifics-ratings-comment-box"
+                  multiline
+                  label="What did you think about this product?"
+                ></TextField>
+                <Button type="submit" variant="contained">
+                  Submit
+                </Button>
+              </form>
+            ) : null}
           </div>
         </div>
       </div>
