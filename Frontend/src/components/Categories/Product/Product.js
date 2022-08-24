@@ -9,21 +9,26 @@ const jsonData = require("../../../data/products.json");
 function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
-  const [comments, setComments] = useState([
-    {
-      fromUser: "",
-      commentMessage: "",
-    },
-  ]);
+  const [comments, setComments] = useState([]);
   const { productsInCart, setProductsInCart } = useContext(CartContext);
   const { user } = useContext(UserContext);
 
+  console.log(comments);
   useEffect(() => {
     for (let i = 0; i < jsonData.length; i++) {
       if (jsonData[i].id == id) {
         setProduct(jsonData[i]);
       }
     }
+
+    const getAllComments = async () => {
+      const result = await fetch(
+        `http://localhost:5000/api/comments/comments/${id}`
+      );
+      const data = await result.json();
+      setComments(data);
+    };
+    getAllComments();
   }, [id]);
 
   const addToCartFunction = (product) => {
@@ -71,14 +76,15 @@ function Product() {
             </div>
             <div className="product-page-specifics-ratings-comments">
               {comments.length === 0 ? (
-                comments.map((comment) => {
-                  <div className="product-page-specifics-ratings-comment">
-                    <p>By user: {comment.fromUser}</p>
-                    <p>{comment.commentMessage}</p>
-                  </div>;
-                })
-              ) : (
                 <p>There are no reviews for this product.</p>
+              ) : (
+                comments.map((review) => {
+                  return( <div className="product-page-specifics-ratings-comment">
+                    <p>Written by: {review.byUser.firstname}</p>
+                    <p>{review.comment}</p>
+                  </div>
+                  )  
+                })
               )}
             </div>
             {user.isLoggedIn ? (
