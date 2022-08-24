@@ -6,3 +6,5 @@ const commentSchema = new mongoose.Schema({
     firstname: String,
     comment: String
 })
+
+export default mongoose.Schema("Comment", commentSchema);
