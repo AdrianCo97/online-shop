@@ -25,8 +25,8 @@ router.post("/comment", async (req, res) => {
     }
 });
 
-router.get("/comments/:Id", async (req, res) => {
-    const productId = req.params.Id;
+router.get("/comments/:id", async (req, res) => {
+    const productId = req.params.id;
     try{
         const comments = await Comment.find({productId: productId})
 
