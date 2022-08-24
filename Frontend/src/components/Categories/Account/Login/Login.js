@@ -83,10 +83,10 @@ function Login() {
 
   return (
     <form className="login-box" onSubmit={login}>
-      <div className="header">
-        <h2>Login</h2>
+      <div className="login-box-header">
+        <h2 className="login-box-title">Login</h2>
       </div>
-      <div className="body">
+      <div className="login-box-body">
         <TextField
           id="email"
           required
@@ -137,7 +137,7 @@ function Login() {
             <AlertTitle>{errorMessage.message}</AlertTitle>
           </Alert>
         </Collapse>
-        <div className="buttons">
+        <div className="login-box-buttons">
           <Button type="submit" sx={{ width: 200, mb: 1 }} variant="contained">
             Login
           </Button>
