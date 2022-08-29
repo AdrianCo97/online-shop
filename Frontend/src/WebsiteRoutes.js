@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Home from "./components/Categories/Home/Home.js";
 import Clothes from "./components/Categories/Clothes/Clothes.js";
 import Electronics from "./components/Categories/Electronics/Electronics.js";
@@ -17,12 +17,19 @@ function WebsiteRoutes() {
   const [productsInCart, setProductsInCart] = useState([]);
   const [currentPage, setCurrentPage] = useState({
     pages: ["Home", "Electronics", "Clothes", "Accessories"],
-    onPage: 0
+    onPage: 0,
   });
-  const [user, setUser] = useState({
-    user: { firstname: "", lastname: "", email: "", accesstoken: "" },
-    isLoggedIn: false,
-  });
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || {
+      user: { firstname: "", lastname: "", email: "", accesstoken: "" },
+      isLoggedIn: false,
+    }
+  );
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
   return (
     <PageContext.Provider value={{ currentPage, setCurrentPage }}>
       <UserContext.Provider value={{ user, setUser }}>
