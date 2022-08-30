@@ -1,11 +1,10 @@
 import { useState, useContext, useEffect } from "react";
 import "../ShoppingCart/ShoppingCart.css";
 import { CartContext } from "../../../contexts/CartContext.js";
-import { UserContext } from "../../../contexts/UserContext.js"
+import { UserContext } from "../../../contexts/UserContext.js";
 import Navbar from "../../Navbar/Navbar.js";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Button } from "@mui/material";
-
+import { Button, Collapse, TextField } from "@mui/material";
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
@@ -13,6 +12,15 @@ function ShoppingCart() {
 
   const [productsToRender, setProductsToRender] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const [shoppingList, setShoppingList] = useState({
+    data: {
+      email: "",
+      cartTitle: "",
+      products: [],
+    },
+    formOpen: false,
+  });
 
   useEffect(() => {
     gatherAndGetAmountOfProducts();
@@ -42,7 +50,7 @@ function ShoppingCart() {
   const removeProduct = (product, indexToDelete) => {
     setProductsToRender([
       ...productsToRender.slice(0, indexToDelete),
-      ...productsToRender.slice(indexToDelete + 1, productsToRender.length)
+      ...productsToRender.slice(indexToDelete + 1, productsToRender.length),
     ]);
 
     let array = productsInCart.filter((p) => {
@@ -62,13 +70,55 @@ function ShoppingCart() {
     setTotalPrice(roundedPrice);
   };
 
+  const saveShoppingList = async (e) => {
+    const data = {email: user.user.email, cartTitle: shoppingList.data.cartTitle, products: productsInCart}
+    await fetch("http://localhost:5000/api/cart/savecart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  };
+
   return (
     <div>
       <Navbar />
       <div className="shopping-cart-header">
         <p>Total Price: {totalPrice} €</p>
-        {productsInCart.length > 0 ? <Button variant="contained" sx={{width: 250, mb: 1}}>Go to checkout</Button> : <Button disabled variant="contained" sx={{width: 250, mb: 1}}>Go to checkout</Button>}
-        {user.isLoggedIn && productsInCart.length > 0 ? <Button variant="contained" sx={{width: 250}}>Save the shoppinglist</Button> : <Button disabled variant="contained" sx={{width: 250}}>Save the shoppinglist</Button>}
+        {productsInCart.length > 0 ? (
+          <Button variant="contained" sx={{ width: 250, mb: 1 }}>
+            Go to checkout
+          </Button>
+        ) : (
+          <Button disabled variant="contained" sx={{ width: 250, mb: 1 }}>
+            Go to checkout
+          </Button>
+        )}
+        {productsInCart.length > 0 && user.isLoggedIn ? (
+          <Button
+            variant="contained"
+            sx={{ width: 250 }}
+            onClick={() => setShoppingList({ ...shoppingList, formOpen: true })}
+          >
+            Save the shoppinglist
+          </Button>
+        ) : (
+          <Button disabled variant="contained" sx={{ width: 250 }}>
+            Save the shoppinglist
+          </Button>
+        )}
+        <Collapse in={shoppingList.formOpen} sx={{ mb: 2 }}>
+          <form onSubmit={saveShoppingList}>
+            <TextField
+              label="Name the shoppinglist"
+              onChange={(e) => {
+                setShoppingList({ ...shoppingList, data: {...shoppingList.data, cartTitle: e.target.value}});
+              }}
+            ></TextField>
+            <Button variant="contained" type="submit">
+              Save
+            </Button>
+          </form>
+        </Collapse>
         <div className="info-box">
           <div className="info-box-left">
             <p className="product-title">Title</p>
