@@ -10,7 +10,7 @@ import { Menu, MenuItem } from "@mui/material";
 
 function Navbar() {
   const { productsInCart } = useContext(CartContext);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [menu, setMenu] = useState({
     anchorElement: null,
     open: false,
@@ -27,6 +27,19 @@ function Navbar() {
 
   const closeMenu = () => {
     setMenu({ open: false, anchorElement: null });
+  };
+
+  const logout = () => {
+    setUser({
+      user: { firstname: "", lastname: "", email: "", accesstoken: "" },
+      isLoggedIn: false,
+    });
+    localStorage.clear();
+    navigate("/");
+    setMenu({
+      anchorElement: null,
+      open: false,
+    });
   };
 
   return (
@@ -58,12 +71,12 @@ function Navbar() {
           <Menu
             anchorEl={menu.anchorElement}
             open={menu.open}
-            anchorOrigin={{ horizontal: "center", vertical: "bottom"}}
-            transformOrigin={{ horizontal: "center", vertical: "top"}}
+            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+            transformOrigin={{ horizontal: "center", vertical: "top" }}
             onClose={closeMenu}
           >
             <MenuItem>Profile</MenuItem>
-            <MenuItem>Logout</MenuItem>
+            <MenuItem onClick={logout}>Logout</MenuItem>
           </Menu>
         </div>
         <div className="cartSection">
