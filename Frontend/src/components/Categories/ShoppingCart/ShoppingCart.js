@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import "../ShoppingCart/ShoppingCart.css";
 import { CartContext } from "../../../contexts/CartContext.js";
+import { UserContext } from "../../../contexts/UserContext.js"
 import Navbar from "../../Navbar/Navbar.js";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
@@ -8,6 +9,7 @@ import { Button } from "@mui/material";
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
+  const { user } = useContext(UserContext);
 
   const [productsToRender, setProductsToRender] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -65,7 +67,8 @@ function ShoppingCart() {
       <Navbar />
       <div className="shopping-cart-header">
         <p>Total Price: {totalPrice} €</p>
-        {productsInCart.length > 0 ? <Button variant="contained">Go to checkout</Button> : <Button disabled variant="contained">Go to checkout</Button>}
+        {productsInCart.length > 0 ? <Button variant="contained" sx={{width: 250, mb: 1}}>Go to checkout</Button> : <Button disabled variant="contained" sx={{width: 250, mb: 1}}>Go to checkout</Button>}
+        {user.isLoggedIn && productsInCart.length > 0 ? <Button variant="contained" sx={{width: 250}}>Save the shoppinglist</Button> : <Button disabled variant="contained" sx={{width: 250}}>Save the shoppinglist</Button>}
         <div className="info-box">
           <div className="info-box-left">
             <p className="product-title">Title</p>
