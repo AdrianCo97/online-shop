@@ -64,7 +64,6 @@ function Login() {
       })
       .then((data) => {
         if (data != null) {
-          console.log(data);
           setUser({
             user: {
               firstname: data.user.firstname,
