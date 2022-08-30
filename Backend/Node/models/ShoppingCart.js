@@ -3,8 +3,8 @@ import Product from "../models/Product.js";
 
 const shoppingCartSchema = mongoose.Schema(
   {
-    email: String,
-    cartTitle: String,
+    email: {type: String, required: true},
+    cartTitle: {type: String, required: true},
     products: [{
         id: Number,
         title: String,
