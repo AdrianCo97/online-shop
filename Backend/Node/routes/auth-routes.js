@@ -47,22 +47,24 @@ router.post("/login", async (req, res) => {
     const validPassword = await bcrypt.compare(password, foundUser.password);
     if (validPassword) {
       const accessToken = jwt.sign(
-        foundUser.toJSON(),
-        process.env.ACCESS_TOKEN
+        { user: foundUser.toJSON() },
+        process.env.ACCESS_TOKEN,
+        { expiresIn: "1h" }
       );
+      res.status(200).json({
+        user: {
+          firstname: foundUser.firstname,
+          lastname: foundUser.lastname,
+          email: foundUser.email,
+        },
+        accessToken: accessToken,
+      });
+    } else {
       res
-        .status(200)
+        .status(400)
         .json({
-          user: {
-            firstname: foundUser.firstname,
-            lastname: foundUser.lastname,
-            email: foundUser.email,
-          },
-          accessToken: accessToken,
+          error: "Either the email or password is incorrect. Try again!",
         });
-    }
-    else{
-      res.status(400).json({error: "Either the email or password is incorrect. Try again!"})
     }
   } else {
     res
