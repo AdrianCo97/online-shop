@@ -1,9 +1,9 @@
 import express from 'express';
 import ShoppingCart from "../models/ShoppingCart.js";
-
+import { doesAccountContainList } from '../middleware/validation.js';
 const router = express.Router();
 
-router.post("/savecart", async(req, res) => {
+router.post("/savecart", doesAccountContainList, async(req, res) => {
     const email = req.body.email;
     const cartTitle = req.body.cartTitle;
     const products = req.body.products;
