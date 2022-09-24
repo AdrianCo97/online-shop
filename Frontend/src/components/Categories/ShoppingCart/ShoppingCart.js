@@ -97,7 +97,7 @@ function ShoppingCart() {
           <Button
             variant="contained"
             sx={{ width: 250 }}
-            onClick={() => setShoppingList({ ...shoppingList, formOpen: true })}
+            onClick={() => setShoppingList({ ...shoppingList, formOpen: !shoppingList.formOpen })}
           >
             Save the shoppinglist
           </Button>
