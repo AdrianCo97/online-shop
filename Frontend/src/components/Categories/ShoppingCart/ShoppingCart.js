@@ -4,7 +4,7 @@ import { CartContext } from "../../../contexts/CartContext.js";
 import { UserContext } from "../../../contexts/UserContext.js";
 import Navbar from "../../Navbar/Navbar.js";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Button, Collapse, TextField } from "@mui/material";
+import { Alert, Button, Collapse, TextField } from "@mui/material";
 
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
@@ -20,6 +20,7 @@ function ShoppingCart() {
       products: [],
     },
     formOpen: false,
+    shoppingCartSaveResult: false
   });
 
   useEffect(() => {
@@ -71,12 +72,18 @@ function ShoppingCart() {
   };
 
   const saveShoppingList = async (e) => {
+    e.preventDefault();
     const data = {email: user.user.email, cartTitle: shoppingList.data.cartTitle, products: productsInCart}
     await fetch("http://localhost:5000/api/cart/savecart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-    });
+    })
+    .then(response => {
+      if(response.status === 200){
+        setShoppingList({ ...shoppingList, shoppingCartSaveResult: true})
+      }
+    })
   };
 
   return (
@@ -117,6 +124,9 @@ function ShoppingCart() {
             <Button variant="contained" type="submit" sx={{mt: 1}}>
               Save
             </Button>
+            <Collapse in={shoppingList.shoppingCartSaveResult} sx={{mt: 1}}>
+              <Alert severity="success">The list was successfully saved</Alert>
+            </Collapse>
           </form>
         </Collapse>
         <div className="info-box">
