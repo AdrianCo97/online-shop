@@ -20,7 +20,7 @@ function ShoppingCart() {
       products: [],
     },
     formOpen: false,
-    shoppingCartSaveResult: false
+    shoppingListSaveStatus: {saved: false, status: "", response: ""}
   });
 
   useEffect(() => {
@@ -80,8 +80,15 @@ function ShoppingCart() {
       body: JSON.stringify(data),
     })
     .then(response => {
-      if(response.status === 200){
-        setShoppingList({ ...shoppingList, shoppingCartSaveResult: true})
+      if(response.ok){
+        response.json().then(data => {
+          setShoppingList({ ...shoppingList, shoppingListSaveStatus: {saved: true, status: "success", response: "The list was saved successfully!"}})
+        })
+      }
+      else{
+        response.json().then(data => {
+          setShoppingList({ ...shoppingList, shoppingListSaveStatus: {saved: true, status: "error", response: data.error}})
+        })
       }
     })
   };
@@ -120,12 +127,13 @@ function ShoppingCart() {
               onChange={(e) => {
                 setShoppingList({ ...shoppingList, data: {...shoppingList.data, cartTitle: e.target.value}});
               }}
+              required
             ></TextField>
             <Button variant="contained" type="submit" sx={{mt: 1}}>
               Save
             </Button>
-            <Collapse in={shoppingList.shoppingCartSaveResult} sx={{mt: 1}}>
-              <Alert severity="success">The list was successfully saved</Alert>
+            <Collapse in={shoppingList.shoppingListSaveStatus.saved} sx={{mt: 1}}>
+              <Alert severity={shoppingList.shoppingListSaveStatus.status}>{shoppingList.shoppingListSaveStatus.response}</Alert>
             </Collapse>
           </form>
         </Collapse>
