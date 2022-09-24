@@ -121,6 +121,8 @@
 }
 
 .save-shoppinglist-form{
+  width: 300px;
+  text-align: center;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
