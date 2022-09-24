@@ -127,12 +127,13 @@ function ShoppingCart() {
               onChange={(e) => {
                 setShoppingList({ ...shoppingList, data: {...shoppingList.data, cartTitle: e.target.value}});
               }}
+              disabled={shoppingList.shoppingListSaveStatus.listSaved}
               required
             ></TextField>
-            <Button variant="contained" type="submit" sx={{mt: 1}}>
+            <Button variant="contained" type="submit" sx={{mt: 1}} disabled={shoppingList.shoppingListSaveStatus.listSaved}>
               Save
             </Button>
-            <Collapse in={shoppingList.shoppingListSaveStatus.saved} sx={{mt: 1}}>
+            <Collapse in={shoppingList.shoppingListSaveStatus.alertWindowOpen} sx={{mt: 1}}>
               <Alert severity={shoppingList.shoppingListSaveStatus.status}>{shoppingList.shoppingListSaveStatus.response}</Alert>
             </Collapse>
           </form>
