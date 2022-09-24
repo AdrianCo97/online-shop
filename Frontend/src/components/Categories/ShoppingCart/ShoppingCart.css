@@ -119,3 +119,11 @@
 .trashcan{
   cursor: pointer;
 }
+
+.save-shoppinglist-form{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgb(194, 194, 194);
+  padding: 10px;
+}

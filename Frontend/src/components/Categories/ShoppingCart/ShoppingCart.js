@@ -107,14 +107,14 @@ function ShoppingCart() {
           </Button>
         )}
         <Collapse in={shoppingList.formOpen} sx={{ mb: 2 }}>
-          <form onSubmit={saveShoppingList}>
+          <form onSubmit={saveShoppingList} className="save-shoppinglist-form">
             <TextField
               label="Name the shoppinglist"
               onChange={(e) => {
                 setShoppingList({ ...shoppingList, data: {...shoppingList.data, cartTitle: e.target.value}});
               }}
             ></TextField>
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" sx={{mt: 1}}>
               Save
             </Button>
           </form>
