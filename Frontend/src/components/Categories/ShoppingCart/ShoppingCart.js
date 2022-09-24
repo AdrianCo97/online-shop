@@ -6,6 +6,16 @@ import Navbar from "../../Navbar/Navbar.js";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Alert, Button, Collapse, TextField } from "@mui/material";
 
+const initialShoppingListState = {
+  data: {
+    email: "",
+    cartTitle: "",
+    products: [],
+  },
+  formOpen: false,
+  shoppingListSaveStatus: {alertWindowOpen: false, listSaved: false, status: "", response: ""}
+}
+
 function ShoppingCart() {
   const { productsInCart, setProductsInCart } = useContext(CartContext);
   const { user } = useContext(UserContext);
@@ -13,15 +23,7 @@ function ShoppingCart() {
   const [productsToRender, setProductsToRender] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const [shoppingList, setShoppingList] = useState({
-    data: {
-      email: "",
-      cartTitle: "",
-      products: [],
-    },
-    formOpen: false,
-    shoppingListSaveStatus: {alertWindowOpen: false, listSaved: false, status: "", response: ""}
-  });
+  const [shoppingList, setShoppingList] = useState(initialShoppingListState);
 
   useEffect(() => {
     gatherAndGetAmountOfProducts();
@@ -81,9 +83,13 @@ function ShoppingCart() {
     })
     .then(response => {
       if(response.ok){
-        response.json().then(data => {
-          setShoppingList({ ...shoppingList, shoppingListSaveStatus: {alertWindowOpen: true, listSaved: true, status: "success", response: "The list was saved successfully!"}})
-        })
+        setShoppingList({ ...shoppingList, shoppingListSaveStatus: {alertWindowOpen: true, listSaved: true, status: "success", response: "The list was saved successfully!"}});
+        setTimeout(() => {
+          setShoppingList(initialShoppingListState);
+          setProductsInCart([]);
+          setProductsToRender([]);
+          setTotalPrice(0);
+        }, 2000)
       }
       else{
         response.json().then(data => {
