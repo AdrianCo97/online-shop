@@ -20,7 +20,7 @@ function ShoppingCart() {
       products: [],
     },
     formOpen: false,
-    shoppingListSaveStatus: {saved: false, status: "", response: ""}
+    shoppingListSaveStatus: {alertWindowOpen: false, listSaved: false, status: "", response: ""}
   });
 
   useEffect(() => {
@@ -82,12 +82,12 @@ function ShoppingCart() {
     .then(response => {
       if(response.ok){
         response.json().then(data => {
-          setShoppingList({ ...shoppingList, shoppingListSaveStatus: {saved: true, status: "success", response: "The list was saved successfully!"}})
+          setShoppingList({ ...shoppingList, shoppingListSaveStatus: {alertWindowOpen: true, listSaved: true, status: "success", response: "The list was saved successfully!"}})
         })
       }
       else{
         response.json().then(data => {
-          setShoppingList({ ...shoppingList, shoppingListSaveStatus: {saved: true, status: "error", response: data.error}})
+          setShoppingList({ ...shoppingList, shoppingListSaveStatus: {alertWindowOpen: true, listSaved: false, status: "error", response: data.error}})
         })
       }
     })
